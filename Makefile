@@ -11,4 +11,4 @@ clean:
 	rm -f *.html *.png
 
 publish: default
-	echo "Push to the pages branch on github"
+	./publish.sh
