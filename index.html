@@ -1,0 +1,1763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.4" />
+<title>Thrift: The Missing Guide</title>
+<style type="text/css">
+/* Sans-serif font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+div#toctitle,
+span#author, span#revnumber, span#revdate, span#revremark,
+div#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+/* Serif font. */
+div.sectionbody {
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+/* Monospace font. */
+tt {
+  font-size: inherit;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+tt {
+  font-size: inherit;
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revnumber, span#revdate, span#revremark {
+}
+
+div#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toc {
+  margin-bottom: 2.5em;
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+window.onload = function(){asciidoc.footnotes(); asciidoc.toc(2);}
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  var cont = document.getElementById("content");
+  var noteholder = document.getElementById("footnotes");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      // Use [\s\S] in place of . so multi-line matches work.
+      // Because JavaScript has no s (dotall) regex flag.
+      note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      spans[i].innerHTML =
+        "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+        "' title='View footnote' class='footnote'>" + n + "</a>]";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+}
+
+}
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Thrift: The Missing Guide</h1>
+<span id="author">Diwaker Gupta</span><br />
+<span id="email"><tt>&lt;<a href="mailto:diwakergupta@gmail.com">diwakergupta@gmail.com</a>&gt;</tt></span><br />
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>From the <a href="http://thrift.apache.org">Thrift website</a>:</p></div>
+<div class="quoteblock">
+<div class="content">Thrift is a software framework for scalable cross-language services development.
+It combines a software stack with a code generation engine to build services
+that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby,
+Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.</div>
+<div class="attribution">
+</div></div>
+<div class="paragraph"><p>Thrift is clearly abundant in features. What is sorely lacking though is <em>good</em>
+documentation. This guide is an attempt to fill that hole. But note that this is
+a reference guide&#8201;&#8212;&#8201;for a step-by-step example on how to use Thrift, refer to
+the Thrift tutorial.</p></div>
+<div class="paragraph"><p>Many aspects of the structure and organization of this guide have been borrowed
+from the (excellent)
+<a href="http://code.google.com/apis/protocolbuffers/docs/proto.html">Google Protocol
+Buffer Language Guide</a>. I thank the authors of that document.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_language_reference">Language Reference</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_types">Types</h3>
+<div class="paragraph"><p>The Thrift type system consists of pre-defined base types, user-defined structs,
+container types, exceptions and service definitions.</p></div>
+<div class="sect3">
+<h4 id="_base_types">Base Types</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>bool</tt>: A boolean value (true or false), one byte
+</p>
+</li>
+<li>
+<p>
+<tt>byte</tt>: A signed byte
+</p>
+</li>
+<li>
+<p>
+<tt>i16</tt>: A 16-bit signed integer
+</p>
+</li>
+<li>
+<p>
+<tt>i32</tt>: A 32-bit signed integer
+</p>
+</li>
+<li>
+<p>
+<tt>i64</tt>: A 64-bit signed integer
+</p>
+</li>
+<li>
+<p>
+<tt>double</tt>: A 64-bit floating point number
+</p>
+</li>
+<li>
+<p>
+<tt>string</tt>: Encoding agnostic text or binary string
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Note that Thrift does not support unsigned integers because they have no direct
+translation to native (primitive) types in many of Thrift&#8217;s target languages.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_containers">Containers</h4>
+<div class="paragraph"><p>Thrift containers are strongly typed containers that map to the most commonly
+used containers in popular programming languages. They are annotated using the
+Java Generics style. There are three containers types available:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>list&lt;t1&gt;</tt>: An ordered list of elements of type <tt>t1</tt>. May contain duplicates.
+</p>
+</li>
+<li>
+<p>
+<tt>set&lt;t1&gt;</tt>: An unordered set of unique elements of type <tt>t1</tt>.
+</p>
+</li>
+<li>
+<p>
+<tt>map&lt;t1,t2&gt;</tt>: A map of strictly unique keys of type <tt>t1</tt> to values of type
+  <tt>t2</tt>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Types used in containers many be any valid Thrift type (including structs and
+exceptions) excluding services.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_structs_and_exceptions">Structs and Exceptions</h4>
+<div class="paragraph"><p>A Thrift struct is conceptually similar to a <tt>C</tt> struct&#8201;&#8212;&#8201;a convenient way of
+grouping together (and encapsulating) related items. Structs translate to
+classes in object-oriented languages.</p></div>
+<div class="paragraph"><p>Exceptions are syntactically and functionally equivalent to structs except that
+they are declared using the <tt>exception</tt> keyword instead of the <tt>struct</tt> keyword.
+They differ from structs in semantics&#8201;&#8212;&#8201;when defining RPC services, developers
+may declare that a remote method throws an exception.</p></div>
+<div class="paragraph"><p>Details on defining structs and exceptions are the subject of a
+<a href="#_defining_structs">later section</a>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_services">Services</h4>
+<div class="paragraph"><p>Service definitions are semantically equivalent to defining an <tt>interface</tt> (or a
+pure virtual abstract class) in object-oriented programming. The Thrift compiler
+generates fully functional client and server stubs that implement the interface.</p></div>
+<div class="paragraph"><p>Details on defining services are the subject of a <a href="#_defining_services">later section</a>.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_typedefs">Typedefs</h3>
+<div class="paragraph"><p>Thrift supports C/C++ style typedefs.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> <span style="color: #008080">i32</span> MyInteger   <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> <span style="color: #008080">Tweet</span> ReTweet   <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Note there is no trailing semi-colon
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+Structs can also be used in typedefs
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_enums">Enums</h3>
+<div class="paragraph"><p>When you&#8217;re defining a message type, you might want one of its fields to only
+have one of a pre-defined list of values. For example, let&#8217;s say you want to add
+a <tt>tweetType</tt> field for each <tt>Tweet</tt>, where the <tt>tweetType</tt> can be
+<tt>TWEET</tt>, <tt>RETWEET</tt>, <tt>DM</tt>, or <tt>REPLY</tt>. You can do this very simply by
+adding an enum to your message definition&#8201;&#8212;&#8201;a field with an enum type can only
+have one of a specified set of constants as its value (if you try to provide a
+different value, the parser will treat it like an unknown field). In the
+following example we&#8217;ve added an enum called <tt>TweetType</tt> with all the possible
+values, and a field of the same type:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">enum</span></span> TweetType <span style="color: #FF0000">{</span>
+    TWEET<span style="color: #990000">,</span>       <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+    RETWEET <span style="color: #990000">=</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span>
+    DM <span style="color: #990000">=</span> <span style="color: #993399">0xa</span><span style="color: #990000">,</span>    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></span></span>
+    REPLY
+<span style="color: #FF0000">}</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></span></span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
+    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>
+    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>
+    <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
+    <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>
+    <span style="color: #993399">5</span><span style="color: #990000">:</span> optional <span style="color: #008080">TweetType</span> tweetType <span style="color: #990000">=</span> TweetType<span style="color: #990000">.</span>TWEET <span style="font-style: italic"><span style="color: #9A1900">// <img alt="5" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
+FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
+A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
+Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
+c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
+ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
+TkSuQmCC" /></span></span>
+    <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Enums are specified C-style. Compiler assigns default values starting at 0.
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+You can of course, supply specific integral values for constants.
+</td></tr>
+<tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></td><td>
+Hex values are also acceptable.
+</td></tr>
+<tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></td><td>
+Again notice no trailing semi-colon
+</td></tr>
+<tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
+FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
+A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
+Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
+c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
+ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
+TkSuQmCC" /></td><td>
+Use the fully qualified name of the constant when assigning default values.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
+structs, for that matter).</p></div>
+<div class="paragraph"><p>Enumerator constants must be in the range of <em>postive</em> 32-bit integers.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_comments">Comments</h3>
+<div class="paragraph"><p>Thrift supports shell-style, C-style multi-line as well as single-line Java/C++
+style comments.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080"># This</span></span> is a <span style="color: #008080">valid</span> comment<span style="color: #990000">.</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">/*</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * This is a multi-line comment.</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> * Just like in C.</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+
+<span style="font-style: italic"><span style="color: #9A1900">// C++/Java style single-line comments work just as well.</span></span></tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_namespaces">Namespaces</h3>
+<div class="paragraph"><p>Namespaces in Thrift are akin to namespaces in C++ or packages in Java&#8201;&#8212;&#8201;they
+offer a convenient way of organizing (or isolating) your code. Namespaces may
+also be used to prevent name clashes between type definitions.</p></div>
+<div class="paragraph"><p>Because each language has its own package-like mechanisms (e.g. Python has
+modules), Thrift allows you to customize the namespace behavior on a
+per-language basis:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">cpp</span> com<span style="color: #990000">.</span>example<span style="color: #990000">.</span>project  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">java</span> com<span style="color: #990000">.</span>example<span style="color: #990000">.</span>project <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Translates to <tt>namespace com { namespace example { namespace project {</tt>
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+Translates to <tt>package com.example.project</tt>
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_includes">Includes</h3>
+<div class="paragraph"><p>It is often useful to split up Thrift definitions in separate files to ease
+maintainance, enable reuse and improve modularity/organization. Thrift allows
+files to <em>include</em> other Thrift files. Included files are looked up in the
+current directory and by searching relative to any paths specified with the <tt>-I</tt>
+compiler flag.</p></div>
+<div class="paragraph"><p>Included objects are accessed using the name of the Thrift file as a prefix.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>include <span style="color: #FF0000">"tweet.thrift"</span>           <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+<span style="color: #990000">...</span>
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">TweetSearchResult</span> <span style="color: #FF0000">{</span>
+    <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">list&lt;tweet.Tweet&gt;</span> tweets<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+File names must be quoted; again notice the absent semi-colon.
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+Note the <tt>tweet</tt> prefix.
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_constants">Constants</h3>
+<div class="paragraph"><p>Thrift lets you define constants for use across languages. Complex types and
+structs are specified using JSON notation.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">i32</span> INT_CONST <span style="color: #990000">=</span> <span style="color: #993399">1234</span><span style="color: #990000">;</span>    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+<span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">map&lt;string,string&gt;</span> MAP_CONST <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #FF0000">"hello"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"world"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"goodnight"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"moon"</span><span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Semi-colon is (confusingly) optional; hex values are valid here.
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_defining_structs">Defining Structs</h3>
+<div class="paragraph"><p>Structs (also known as <em>messages</em> in some systems) are the basic building blocks
+in a Thrift IDL. A struct is composed of <em>fields</em>; each field has a unique
+integer identifier, a type, a name and an optional default value.</p></div>
+<div class="paragraph"><p>Consider a simple example. Suppose you want to build a
+<a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <tt>Tweet</tt>:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
+    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>                  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>             <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span>
+    <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
+    <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></span></span>
+    <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></span></span>
+<span style="color: #FF0000">}</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Location</span> <span style="color: #FF0000">{</span>                            <span style="font-style: italic"><span style="color: #9A1900">// <img alt="5" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
+FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
+A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
+Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
+c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
+ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
+TkSuQmCC" /></span></span>
+    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> latitude<span style="color: #990000">;</span>
+    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> longitude<span style="color: #990000">;</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Every field <strong>must</strong> have a unique, positive integer identifier
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+Fields may be marked as <tt>required</tt> or <tt>optional</tt>
+</td></tr>
+<tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></td><td>
+Structs may contain other structs
+</td></tr>
+<tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></td><td>
+You may specify an optional "default" value for a field
+</td></tr>
+<tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
+FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
+A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
+Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
+c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
+ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
+TkSuQmCC" /></td><td>
+Multiple structs can be defined and referred to within the same Thrift file
+</td></tr>
+</table></div>
+<div class="paragraph"><p>As you can see, each field in the message definition has a unique numbered tag.
+These tags are used to identify your fields in the wire format, and should not
+be changed once your message type is in use.</p></div>
+<div class="paragraph"><p>Fields may be marked <tt>required</tt> or <tt>optional</tt> with obvious meanings for
+well-formed structs. Thrift will complain if required fields have not been set
+in a struct, for instance. If an optional field has not been set in the struct,
+it will not be serialized over the wire. If a default value has been specified
+for an optional field, the field is assigned the default value when the struct
+is parsed and no value has been explicitly assigned for that field.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img alt="Warning" src="data:image/png;base64,
+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
+/F/lgJiyQFHragAAAABJRU5ErkJggg==" />
+</td>
+<td class="content">
+<div class="title">Required Is Forever</div>You should be very careful about marking fields as required. If at some point
+you wish to stop writing or sending a required field, it will be problematic to
+change the field to an optional field&#8201;&#8212;&#8201;old readers will consider messages
+without this field to be incomplete and may reject or drop them unintentionally.
+You should consider writing application-specific custom validation routines for
+your buffers instead. Some have come the conclusion that using required does
+more harm than good; they prefer to use only optional and repeated. However,
+this view is not universal.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_services">Defining Services</h3>
+<div class="paragraph"><p>While there are several popular serialization/deserialization frameworks (like
+Protocol Buffers), there are few frameworks that provide out-of-the-box support
+for RPC-based services across multiple languages. This is one of the major
+attractions of Thrift.</p></div>
+<div class="paragraph"><p>Think of service definitions as Java interfaces&#8201;&#8212;&#8201;you need to supply a name and
+signatures for the methods. Optionally, a service may extend other services.</p></div>
+<div class="paragraph"><p>The Thrift compiler will generate service interface code (for the server) and
+stubs (for the client) in your chosen language. Thrift ships with RPC libraries
+for most languages that you can then use to run your client and server.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #008080">service</span> Twitter <span style="color: #FF0000">{</span>
+    <span style="font-style: italic"><span style="color: #9A1900">// A method definition looks lik C code. It has a return type, arguments,</span></span>
+    <span style="font-style: italic"><span style="color: #9A1900">// and optionally a list of exceptions that it may throw. Note that argument</span></span>
+    <span style="font-style: italic"><span style="color: #9A1900">// lists and exception list are specified using the exact same syntax as</span></span>
+    <span style="font-style: italic"><span style="color: #9A1900">// field lists in structs.</span></span>
+    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">ping</span></span><span style="color: #990000">(),</span>                                    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+    <span style="color: #008080">bool</span> <span style="font-weight: bold"><span style="color: #000000">postTweet</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">Tweet</span> tweet<span style="color: #990000">);</span>                  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></span></span>
+    <span style="color: #008080">TweetSearchResult</span> <span style="font-weight: bold"><span style="color: #000000">searchTweets</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">string</span> query<span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></span></span>
+
+    <span style="font-style: italic"><span style="color: #9A1900">// The 'oneway' modifier indicates that the client only makes a request and</span></span>
+    <span style="font-style: italic"><span style="color: #9A1900">// does not wait for any response at all. Oneway methods MUST be void.</span></span>
+    oneway <span style="color: #008080">void</span> <span style="font-weight: bold"><span style="color: #000000">zip</span></span><span style="color: #990000">()</span>                               <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></span></span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="colist arabic"><table>
+<tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
+VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
+gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
+YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
+dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+Confusingly, method definitions can be terminated using comma or semi-colon
+</td></tr>
+<tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
+HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
+Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
+izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
+MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
+MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
+AAAASUVORK5CYII=" /></td><td>
+Arguments can be primitive types or structs
+</td></tr>
+<tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
+JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
+7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
+Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
+cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
+NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
+SUVORK5CYII=" /></td><td>
+Likewise for return types
+</td></tr>
+<tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
+HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
+ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
+6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
+QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
+YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
+QmCC" /></td><td>
+<tt>void</tt> is a valid return type for functions
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Note that the argument lists (and exception lists) for functions are specified
+exactly like structs.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img alt="Important" src="data:image/png;base64,
+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
+EQn3XQAAAABJRU5ErkJggg==" />
+</td>
+<td class="content">
+<div class="title">Nested Types</div>As of this writing, Thrift does NOT nested type <em>definitions</em>. That is, you may
+not define a struct (or an enum) within a struct; you may of course <em>use</em>
+structs/enums within other structs.</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generated_code">Generated Code</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This section contains documentation for working with Thrift generated code in
+various target languages. We begin by introducing the common concepts that are
+used across the board&#8201;&#8212;&#8201;these govern how the generated code is structured and
+will hopefully help you understand how to use it effectively.</p></div>
+<div class="sect2">
+<h3 id="_concepts">Concepts</h3>
+<div class="paragraph"><p>Here is a pictorial view of the Thrift network stack:</p></div>
+<div class="imageblock ditaa">
+<div class="content">
+<img alt="thrift__1.png" src="data:image/png;base64,
+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
+RU5ErkJggg==" />
+</div>
+<div class="title">Figure 1. The Thrift Network Stack</div>
+</div>
+<div class="sect3">
+<h4 id="_transport">Transport</h4>
+<div class="paragraph"><p>The Transport layer provides a simple abstraction for reading/writing from/to
+the network. This enables Thrift to decouple the underlying transport from the
+rest of the system (serialization/deserialization, for instance).</p></div>
+<div class="paragraph"><p>Here are some of the methods exposed by the <tt>Transport</tt> interface:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>open</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>close</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>read</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>write</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>flush</tt>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>In addition to the <tt>Transport</tt> interface above, Thrift also uses a
+<tt>ServerTransport</tt> interface used to accept or create primitive transport
+objects. As the name suggest, <tt>ServerTransport</tt> is used mainly on the server
+side to create new Transport objects for incoming connections.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>open</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>listen</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>accept</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>close</tt>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect3">
+<h4 id="_protocol">Protocol</h4>
+<div class="paragraph"><p>The Protocol abstraction defines a mechanism to map in-memory data structures to
+a wire-format. In other words, a protocol specifies how datatypes use the
+underlying Transport to encode/decode themselves.  Thus the protocol
+implementation governs the encoding scheme and is responsible for
+(de)serialization. Some examples of protocols in this sense include JSON, XML,
+plain text, compact binary etc.</p></div>
+<div class="paragraph"><p>Here is the <tt>Protocol</tt> interface:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000000">writeMessageBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> seq<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeMessageEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeStructBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeStructEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeFieldBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> id<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeFieldEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeFieldStop</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeMapBegin</span></span><span style="color: #990000">(</span>ktype<span style="color: #990000">,</span> vtype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeMapEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeListBegin</span></span><span style="color: #990000">(</span>etype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeListEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeSetBegin</span></span><span style="color: #990000">(</span>etype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeSetEnd</span></span><span style="color: #990000">()</span>
+<span style="font-weight: bold"><span style="color: #000000">writeBool</span></span><span style="color: #990000">(</span><span style="color: #009900">bool</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeByte</span></span><span style="color: #990000">(</span>byte<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeI16</span></span><span style="color: #990000">(</span>i16<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeI32</span></span><span style="color: #990000">(</span>i32<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeI64</span></span><span style="color: #990000">(</span>i64<span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeDouble</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span><span style="color: #990000">)</span>
+<span style="font-weight: bold"><span style="color: #000000">writeString</span></span><span style="color: #990000">(</span>string<span style="color: #990000">)</span>
+
+name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> seq <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readMessageBegin</span></span><span style="color: #990000">()</span>
+                  <span style="font-weight: bold"><span style="color: #000000">readMessageEnd</span></span><span style="color: #990000">()</span>
+name <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readStructBegin</span></span><span style="color: #990000">()</span>
+       <span style="font-weight: bold"><span style="color: #000000">readStructEnd</span></span><span style="color: #990000">()</span>
+name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> id <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readFieldBegin</span></span><span style="color: #990000">()</span>
+                 <span style="font-weight: bold"><span style="color: #000000">readFieldEnd</span></span><span style="color: #990000">()</span>
+k<span style="color: #990000">,</span> v<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readMapBegin</span></span><span style="color: #990000">()</span>
+             <span style="font-weight: bold"><span style="color: #000000">readMapEnd</span></span><span style="color: #990000">()</span>
+etype<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readListBegin</span></span><span style="color: #990000">()</span>
+              <span style="font-weight: bold"><span style="color: #000000">readListEnd</span></span><span style="color: #990000">()</span>
+etype<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readSetBegin</span></span><span style="color: #990000">()</span>
+              <span style="font-weight: bold"><span style="color: #000000">readSetEnd</span></span><span style="color: #990000">()</span>
+<span style="color: #009900">bool</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readBool</span></span><span style="color: #990000">()</span>
+byte <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readByte</span></span><span style="color: #990000">()</span>
+i16 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI16</span></span><span style="color: #990000">()</span>
+i32 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI32</span></span><span style="color: #990000">()</span>
+i64 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI64</span></span><span style="color: #990000">()</span>
+<span style="color: #009900">double</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readDouble</span></span><span style="color: #990000">()</span>
+string <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readString</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<div class="paragraph"><p>Thrift Protocols are stream oriented by design. There is no need for any
+explicit framing. For instance, it is not necessary to know the length of a
+string or the number of items in a list before we start serializing them.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_processor">Processor</h4>
+<div class="paragraph"><p>A Processor encapsulates the ability to read data from input streams and write
+to output streams. The input and output streams are represented by Protocol
+objects. The Processor interface is extremely simple:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">interface</span></span> <span style="color: #008080">TProcessor</span> <span style="color: #FF0000">{</span>
+    <span style="color: #008080">bool</span> <span style="font-weight: bold"><span style="color: #000000">process</span></span><span style="color: #990000">(</span><span style="color: #008080">TProtocol</span> in<span style="color: #990000">,</span> <span style="color: #008080">TProtocol</span> out<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">throws</span></span> TException
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Service-specific processor implementations are generated by the compiler. The
+Processor essentially reads data from the wire (using the input protocol),
+delegates processing to the handler (implemented by the user) and writes the
+response over the wire (using the output protocol).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_server">Server</h4>
+<div class="paragraph"><p>A Server pulls together all of the various features described above:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Create a transport
+</p>
+</li>
+<li>
+<p>
+Create input/output protocols for the transport
+</p>
+</li>
+<li>
+<p>
+Create a processor based on the input/output protocols
+</p>
+</li>
+<li>
+<p>
+Wait for incoming connections and hand them off to the processor
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java">Java</h3>
+<div class="paragraph"><p>Generated Java code.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_c">C++</h3>
+<div class="paragraph"><p>Generated C++ code.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_other_languages">Other Languages</h3>
+<div class="paragraph"><p>Python, Ruby, Javascript etc.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices">Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_versioning_compatibility">Versioning/Compatibility</h3>
+<div class="paragraph"><p>Protocols evolve over time. If an existing message type no longer meets all
+your needs&#8201;&#8212;&#8201;for example, you&#8217;d like the message format to have an extra field&#8201;&#8212;&#8201;but you&#8217;d still like to use code created with the old format, don&#8217;t worry!
+It&#8217;s very simple to update message types without breaking any of your existing
+code. Just remember the following rules:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Don&#8217;t change the numeric tags for any existing fields.
+</p>
+</li>
+<li>
+<p>
+Any new fields that you add should be optional. This means that any messages
+  serialized by code using your "old" message format can be parsed by your new
+  generated code, as they won&#8217;t be missing any required elements. You should set
+  up sensible default values for these elements so that new code can properly
+  interact with messages generated by old code. Similarly, messages created by
+  your new code can be parsed by your old code: old binaries simply ignore the
+  new field when parsing. However, the unknown fields are not discarded, and if
+  the message is later serialized, the unknown fields are serialized along with
+  it&#8201;&#8212;&#8201;so if the message is passed on to new code, the new fields are still
+  available.
+</p>
+</li>
+<li>
+<p>
+Non-required fields can be removed, as long as the tag number is not used
+  again in your updated message type (it may be better to rename the field
+  instead, perhaps adding the prefix "OBSOLETE_", so that future users of your
+  .thrift can&#8217;t accidentally reuse the number).
+</p>
+</li>
+<li>
+<p>
+Changing a default value is generally OK, as long as you remember that default
+  values are never sent over the wire. Thus, if a program receives a message in
+  which a particular field isn&#8217;t set, the program will see the default value as
+  it was defined in that program&#8217;s version of the protocol. It will NOT see the
+  default value that was defined in the sender&#8217;s code.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resources">Resources</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Thrift whitepaper
+</p>
+</li>
+<li>
+<p>
+<a href="http://wiki.apache.org/thrift">Thrift Wiki</a>
+</p>
+</li>
+<li>
+<p>
+Protocol Buffers
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2011-03-08 10:22:13 PST
+</div>
+</div>
+</body>
+</html>
