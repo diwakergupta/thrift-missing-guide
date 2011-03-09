@@ -506,6 +506,8 @@ code. Just remember the following rules:
 Resources
 ---------
 
-* Thrift whitepaper
+* http://thrift.apache.org/static/thrift-20070401.pdf[Thrift whitepaper]
+* http://wiki.apache.org/thrift/Tutorial[Thrift Tutorial]
 * http://wiki.apache.org/thrift[Thrift Wiki]
-* Protocol Buffers
+* http://code.google.com/apis/protocolbuffers/docs/overview.html[Protocol
+  Buffers]
