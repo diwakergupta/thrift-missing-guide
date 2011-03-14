@@ -9,7 +9,7 @@ default:
 		thrift.asciidoc
 
 clean:
-	rm -f *.html *.png
+	rm -f index.html *.png
 
 publish: default
 	./publish.sh
