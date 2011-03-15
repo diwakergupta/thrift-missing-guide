@@ -1,0 +1,17 @@
+Generated Files
+^^^^^^^^^^^^^^^
+
+* all constants go into a single +.cpp/.h+ pair
+* all type definitions (enums and structs) go into another +.cpp/.h+ pair
+* each service gets its own +.cpp/.h+ pair
+
+-----------------------------------------------------------------------------
+$ tree gen-cpp
+|-- example_constants.cpp
+|-- example_constants.h
+|-- example_types.cpp
+|-- example_types.h
+|-- Twitter.cpp
+|-- Twitter.h
+`-- Twitter_server.skeleton.cpp
+-----------------------------------------------------------------------------

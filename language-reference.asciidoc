@@ -1,0 +1,284 @@
+Types
+~~~~~
+
+The Thrift type system consists of pre-defined base types, user-defined structs,
+container types, exceptions and service definitions.
+
+Base Types
+^^^^^^^^^^
+
+* +bool+: A boolean value (true or false), one byte
+* +byte+: A signed byte
+* +i16+: A 16-bit signed integer
+* +i32+: A 32-bit signed integer
+* +i64+: A 64-bit signed integer
+* +double+: A 64-bit floating point number
+* +string+: Encoding agnostic text or binary string
+
+Note that Thrift does not support unsigned integers because they have no direct
+translation to native (primitive) types in many of Thrift's target languages.
+
+Containers
+^^^^^^^^^^
+
+Thrift containers are strongly typed containers that map to the most commonly
+used containers in popular programming languages. They are annotated using the
+Java Generics style. There are three containers types available:
+
+* +list<t1>+: An ordered list of elements of type +t1+. May contain duplicates.
+* +set<t1>+: An unordered set of unique elements of type +t1+.
+* +map<t1,t2>+: A map of strictly unique keys of type +t1+ to values of type
+  +t2+.
+
+Types used in containers many be any valid Thrift type (including structs and
+exceptions) excluding services.
+
+Structs and Exceptions
+^^^^^^^^^^^^^^^^^^^^^^
+
+A Thrift struct is conceptually similar to a +C+ struct -- a convenient way of
+grouping together (and encapsulating) related items. Structs translate to
+classes in object-oriented languages.
+
+Exceptions are syntactically and functionally equivalent to structs except that
+they are declared using the +exception+ keyword instead of the +struct+ keyword.
+They differ from structs in semantics -- when defining RPC services, developers
+may declare that a remote method throws an exception.
+
+Details on defining structs and exceptions are the subject of a
+<<_defining_structs,later section>>.
+
+Services
+^^^^^^^^
+
+Service definitions are semantically equivalent to defining an +interface+ (or a
+pure virtual abstract class) in object-oriented programming. The Thrift compiler
+generates fully functional client and server stubs that implement the interface.
+
+Details on defining services are the subject of a <<_defining_services,later
+section>>.
+
+Typedefs
+~~~~~~~~
+
+Thrift supports C/C++ style typedefs.
+
+[source,c]
+-----------------------------------------------------------------------------
+typedef i32 MyInteger   // <1>
+typedef Tweet ReTweet   // <2>
+-----------------------------------------------------------------------------
+<1> Note there is no trailing semi-colon
+<2> Structs can also be used in typedefs
+
+Enums
+~~~~~
+
+When you're defining a message type, you might want one of its fields to only
+have one of a pre-defined list of values. For example, let's say you want to add
+a +tweetType+ field for each +Tweet+, where the +tweetType+ can be
++TWEET+, +RETWEET+, +DM+, or +REPLY+. You can do this very simply by
+adding an enum to your message definition -- a field with an enum type can only
+have one of a specified set of constants as its value (if you try to provide a
+different value, the parser will treat it like an unknown field). In the
+following example we've added an enum called +TweetType+ with all the possible
+values, and a field of the same type:
+
+[source,c]
+-----------------------------------------------------------------------------
+enum TweetType {
+    TWEET,       // <1>
+    RETWEET = 2, // <2>
+    DM = 0xa,    // <3>
+    REPLY
+}                // <4>
+
+struct Tweet {
+    1: required i32 userId;
+    2: required string userName;
+    3: required string text;
+    4: optional Location loc;
+    5: optional TweetType tweetType = TweetType.TWEET // <5>
+    16: optional string language = "english"
+}
+-----------------------------------------------------------------------------
+<1> Enums are specified C-style. Compiler assigns default values starting at 0.
+<2> You can of course, supply specific integral values for constants.
+<3> Hex values are also acceptable.
+<4> Again notice no trailing semi-colon
+<5> Use the fully qualified name of the constant when assigning default values.
+
+Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
+structs, for that matter).
+
+Enumerator constants must be in the range of _postive_ 32-bit integers.
+
+Comments
+~~~~~~~~
+
+Thrift supports shell-style, C-style multi-line as well as single-line Java/C++
+style comments.
+
+[source,c]
+-----------------------------------------------------------------------------
+# This is a valid comment.
+
+/*
+ * This is a multi-line comment.
+ * Just like in C.
+ */
+
+// C++/Java style single-line comments work just as well.
+-----------------------------------------------------------------------------
+
+Namespaces
+~~~~~~~~~~
+
+Namespaces in Thrift are akin to namespaces in C++ or packages in Java -- they
+offer a convenient way of organizing (or isolating) your code. Namespaces may
+also be used to prevent name clashes between type definitions.
+
+Because each language has its own package-like mechanisms (e.g. Python has
+modules), Thrift allows you to customize the namespace behavior on a
+per-language basis:
+
+[source,cpp]
+-----------------------------------------------------------------------------
+namespace cpp com.example.project  // <1>
+namespace java com.example.project // <2>
+-----------------------------------------------------------------------------
+<1> Translates to +namespace com { namespace example { namespace project {+
+<2> Translates to +package com.example.project+
+
+Includes
+~~~~~~~~
+
+It is often useful to split up Thrift definitions in separate files to ease
+maintainance, enable reuse and improve modularity/organization. Thrift allows
+files to _include_ other Thrift files. Included files are looked up in the
+current directory and by searching relative to any paths specified with the +-I+
+compiler flag.
+
+Included objects are accessed using the name of the Thrift file as a prefix.
+
+[source,cpp]
+-----------------------------------------------------------------------------
+include "tweet.thrift"           // <1>
+...
+struct TweetSearchResult {
+    1: list<tweet.Tweet> tweets; // <2>
+}
+-----------------------------------------------------------------------------
+<1> File names must be quoted; again notice the absent semi-colon.
+<2> Note the +tweet+ prefix.
+
+Constants
+~~~~~~~~~
+
+Thrift lets you define constants for use across languages. Complex types and
+structs are specified using JSON notation.
+
+[source,cpp]
+-----------------------------------------------------------------------------
+const i32 INT_CONST = 1234;    // <1>
+const map<string,string> MAP_CONST = {"hello": "world", "goodnight": "moon"}
+-----------------------------------------------------------------------------
+<1> Semi-colon is (confusingly) optional; hex values are valid here.
+
+Defining Structs
+~~~~~~~~~~~~~~~~
+
+Structs (also known as 'messages' in some systems) are the basic building blocks
+in a Thrift IDL. A struct is composed of _fields_; each field has a unique
+integer identifier, a type, a name and an optional default value.
+
+Consider a simple example. Suppose you want to build a
+http://twitter.com[Twitter]-like service. Here is how may define a +Tweet+:
+
+[source,c]
+-----------------------------------------------------------------------------
+struct Tweet {
+    1: required i32 userId;                  // <1>
+    2: required string userName;             // <2>
+    3: required string text;
+    4: optional Location loc;                // <3>
+    16: optional string language = "english" // <4>
+}
+
+struct Location {                            // <5>
+    1: required double latitude;
+    2: required double longitude;
+}
+-----------------------------------------------------------------------------
+<1> Every field *must* have a unique, positive integer identifier
+<2> Fields may be marked as +required+ or +optional+
+<3> Structs may contain other structs
+<4> You may specify an optional "default" value for a field
+<5> Multiple structs can be defined and referred to within the same Thrift file
+
+As you can see, each field in the message definition has a unique numbered tag.
+These tags are used to identify your fields in the wire format, and should not
+be changed once your message type is in use.
+
+Fields may be marked +required+ or +optional+ with obvious meanings for
+well-formed structs. Thrift will complain if required fields have not been set
+in a struct, for instance. If an optional field has not been set in the struct,
+it will not be serialized over the wire. If a default value has been specified
+for an optional field, the field is assigned the default value when the struct
+is parsed and no value has been explicitly assigned for that field.
+
+[WARNING]
+.Required Is Forever
+You should be very careful about marking fields as required. If at some point
+you wish to stop writing or sending a required field, it will be problematic to
+change the field to an optional field -- old readers will consider messages
+without this field to be incomplete and may reject or drop them unintentionally.
+You should consider writing application-specific custom validation routines for
+your buffers instead. Some have come the conclusion that using required does
+more harm than good; they prefer to use only optional and repeated. However,
+this view is not universal.
+
+Defining Services
+~~~~~~~~~~~~~~~~~
+
+While there are several popular serialization/deserialization frameworks (like
+Protocol Buffers), there are few frameworks that provide out-of-the-box support
+for RPC-based services across multiple languages. This is one of the major
+attractions of Thrift.
+
+Think of service definitions as Java interfaces -- you need to supply a name and
+signatures for the methods. Optionally, a service may extend other services.
+
+The Thrift compiler will generate service interface code (for the server) and
+stubs (for the client) in your chosen language. Thrift ships with RPC libraries
+for most languages that you can then use to run your client and server.
+
+[source,java]
+-----------------------------------------------------------------------------
+service Twitter {
+    // A method definition looks like C code. It has a return type, arguments,
+    // and optionally a list of exceptions that it may throw. Note that argument
+    // lists and exception list are specified using the exact same syntax as
+    // field lists in structs.
+    void ping(),                                    // <1>
+    bool postTweet(1:Tweet tweet);                  // <2>
+    TweetSearchResult searchTweets(1:string query); // <3>
+
+    // The 'oneway' modifier indicates that the client only makes a request and
+    // does not wait for any response at all. Oneway methods MUST be void.
+    oneway void zip()                               // <4>
+}
+-----------------------------------------------------------------------------
+<1> Confusingly, method definitions can be terminated using comma or semi-colon
+<2> Arguments can be primitive types or structs
+<3> Likewise for return types
+<4> +void+ is a valid return type for functions
+
+Note that the argument lists (and exception lists) for functions are specified
+exactly like structs.
+
+[IMPORTANT]
+.Nested Types
+As of this writing, Thrift does NOT nested type _definitions_. That is, you may
+not define a struct (or an enum) within a struct; you may of course _use_
+structs/enums within other structs.

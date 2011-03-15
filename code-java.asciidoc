@@ -1,0 +1,17 @@
+Generated Files
+^^^^^^^^^^^^^^^
+
+* a single file (+Constants.java+) containing all constant definitions
+* one file per struct, enum and service
+
+-----------------------------------------------------------------------------
+$ tree gen-java
+`-- thrift
+    `-- example
+        |-- Constants.java
+        |-- Location.java
+        |-- Tweet.java
+        |-- TweetSearchResult.java
+        |-- TweetType.java
+        `-- Twitter.java
+-----------------------------------------------------------------------------
