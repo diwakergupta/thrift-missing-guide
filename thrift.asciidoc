@@ -39,6 +39,12 @@ https://github.com/diwakergupta/thrift-missing-guide[source code]
 over at http://github.com[GitHub]. Alternatively, you can file a
 https://github.com/diwakergupta/thrift-missing-guide/issues[bug].
 
+.About the Author
+
+I'm an open source geek and a software architect. I blog over at
+http://floatingsun.net[Floating Sun] and you can find me
+http://diwakergupta.info[here].
+
 Language Reference
 ------------------
 include::language-reference.asciidoc[]
