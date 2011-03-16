@@ -1,6 +1,6 @@
 Thrift: The Missing Guide
 =========================
-Diwaker Gupta <diwakergupta@gmail.com>
+Diwaker Gupta <me@diwakergupta.info>
 
 This project is an attempt to plug the gap in http://thrift.apache.org[Thrift]
 documentation. The guide can be found at:

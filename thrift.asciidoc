@@ -1,6 +1,6 @@
 Thrift: The Missing Guide
 =========================
-Diwaker Gupta <diwakergupta@gmail.com>
+Diwaker Gupta <me@diwakergupta.info>
 {localdate}:
 Written against Thrift 0.6.0
 
