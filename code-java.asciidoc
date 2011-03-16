@@ -15,3 +15,15 @@ $ tree gen-java
         |-- TweetType.java
         `-- Twitter.java
 -----------------------------------------------------------------------------
+
+[TIP]
+.Naming Conventions
+=============================================================================
+While the Thrift compiler does not enforce any naming conventions, it is
+advisable to stick to standard naming conventions otherwise you man be in for
+some surprises. For instance, if you have a struct named +tweetSearchResults+
+(note the mixedCase), the Thrift compiler will generated a Java file named
++TweetSearchResults+ (note the CamelCase) containing a class named
++tweetSearchResults+ (like the original struct). This will obviously not
+compile under Java.
+=============================================================================

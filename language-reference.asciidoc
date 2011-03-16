@@ -227,6 +227,9 @@ it will not be serialized over the wire. If a default value has been specified
 for an optional field, the field is assigned the default value when the struct
 is parsed and no value has been explicitly assigned for that field.
 
+Unlike services, structs do not support inheritance, that is, a struct may not
+extend other structs.
+
 [WARNING]
 .Required Is Forever
 You should be very careful about marking fields as required. If at some point
@@ -276,6 +279,11 @@ service Twitter {
 
 Note that the argument lists (and exception lists) for functions are specified
 exactly like structs.
+
+Services support inheritance: a service may optionally inherit from another
+service using the +extends+ keyword.
+
+// TODO: an example here.
 
 [IMPORTANT]
 .Nested Types
