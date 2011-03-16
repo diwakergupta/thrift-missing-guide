@@ -21,6 +21,8 @@ from the (excellent)
 http://code.google.com/apis/protocolbuffers/docs/proto.html[Google Protocol
 Buffer Language Guide]. I thank the authors of that document.
 
+A link:thrift.pdf[PDF version] is also available.
+
 .Copyright
 
 Copyright (C) 2011 Diwaker Gupta
@@ -34,7 +36,8 @@ Unported License].
 
 I welcome feedback and contributions to this guide. You can find the
 https://github.com/diwakergupta/thrift-missing-guide[source code]
-over at http://github.com[GitHub].
+over at http://github.com[GitHub]. Alternatively, you can file a
+https://github.com/diwakergupta/thrift-missing-guide/issues[bug].
 
 Language Reference
 ------------------
