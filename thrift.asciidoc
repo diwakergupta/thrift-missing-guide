@@ -39,6 +39,12 @@ https://github.com/diwakergupta/thrift-missing-guide[source code]
 over at http://github.com[GitHub]. Alternatively, you can file a
 https://github.com/diwakergupta/thrift-missing-guide/issues[bug].
 
+.Acknowledgements
+
+I thank the authors of Thrift for the software, the authors of the Google
+Protocol Buffer documentation for the inspiration and the Thrift community for
+the feedback. Special thanks to Dave Engberg from Evernote for his input.
+
 .About the Author
 
 I'm an open source geek and a software architect. I blog over at

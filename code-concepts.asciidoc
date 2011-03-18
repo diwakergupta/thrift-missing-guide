@@ -144,3 +144,51 @@ otherwise, the sections below will assume the following Thrift specification:
 include::example.thrift[]
 -----------------------------------------------------------------------------
 
+.How are nested structs initialized?
+*****************************************************************************
+In an earlier section, we saw how Thrift allows structs to contain other structs
+(no nested definitions yet though!) In most object-oriented and/or dynamic
+languages, structs map to objects and so it is instructive to understand how
+Thrift initializes nested structs. One reasonable approach would be to treat the
+nested structs as pointers or references and initialize them with NULL, until
+explicitly set by the user.
+
+Unfortunately, for many languages, Thrift uses a 'pass by value' model. As a
+concrete example, consider the generated C++ code for the +Tweet+ struct in our
+example above:
+
+[source,cpp]
+-----------------------------------------------------------------------------
+  ...
+  int32_t userId;
+  std::string userName;
+  std::string text;
+  Location loc;
+  TweetType::type tweetType;
+  std::string language;
+  ...
+-----------------------------------------------------------------------------
+
+As you can see, the nested +Location+ structure is *fully allocated inline*.
+Because +Location+ is optional, the code uses the internal '__isset' flags to
+determine if the field has actually been "set" by the user.
+
+This can lead to some surprising and unintuitive behavior:
+
+* Since the full size of every sub-structure may be allocated at initialization
+  in some languages, memory usage may be higher than you expect, especially for
+  complicated structures with many unset fields.
+* The parameters and return types for service methods may not be "optional" and
+  you can't assign or return +null+ in any dynamic language. Thus to return a
+  "no value" result from a method, you must declare an envelope structure with
+  an optional field containing the value and then return the envelope with that
+  field unset.
+* The transport layer can, however, marshal method calls from older versions of
+  a service definition with missing parameters. Thus, if the original service
+  contained a method +postTweet(1: Tweet tweet)+ and a later version changes it
+  to +postTweet(1: Tweet tweet, 2: string group)+, then an older client invoking
+  the previous method will result in a newer server receiving the call with the
+  new parameter unset. If the new server is in Java, for instance, you may
+  in fact receive a +null+ value for the new parameter. And yet you may not
+  declare a parameter to be nullable within the IDL.
+*****************************************************************************
