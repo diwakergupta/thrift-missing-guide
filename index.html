@@ -586,7 +586,7 @@ footnotes: function () {
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br />
 <span id="email"><tt>&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</tt></span><br />
-<span id="revdate">2011-03-16</span>
+<span id="revdate">2011-03-18</span>
 <br /><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -622,6 +622,9 @@ Unported License</a>.</p></div>
 <a href="https://github.com/diwakergupta/thrift-missing-guide">source code</a>
 over at <a href="http://github.com">GitHub</a>. Alternatively, you can file a
 <a href="https://github.com/diwakergupta/thrift-missing-guide/issues">bug</a>.</p></div>
+<div class="paragraph"><div class="title">Acknowledgements</div><p>I thank the authors of Thrift for the software, the authors of the Google
+Protocol Buffer documentation for the inspiration and the Thrift community for
+the feedback. Special thanks to Dave Engberg from Evernote for his input.</p></div>
 <div class="paragraph"><div class="title">About the Author</div><p>I&#8217;m an open source geek and a software architect. I blog over at
 <a href="http://floatingsun.net">Floating Sun</a> and you can find me
 <a href="http://diwakergupta.info">here</a>.</p></div>
@@ -1743,6 +1746,66 @@ http://www.gnu.org/software/src-highlite -->
     <span style="color: #008080">TweetSearchResult</span> <span style="font-weight: bold"><span style="color: #000000">searchTweets</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">string</span> query<span style="color: #990000">);</span>
     oneway <span style="color: #008080">void</span> <span style="font-weight: bold"><span style="color: #000000">zip</span></span><span style="color: #990000">()</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">How are nested structs initialized?</div>
+<div class="paragraph"><p>In an earlier section, we saw how Thrift allows structs to contain other structs
+(no nested definitions yet though!) In most object-oriented and/or dynamic
+languages, structs map to objects and so it is instructive to understand how
+Thrift initializes nested structs. One reasonable approach would be to treat the
+nested structs as pointers or references and initialize them with NULL, until
+explicitly set by the user.</p></div>
+<div class="paragraph"><p>Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a
+concrete example, consider the generated C++ code for the <tt>Tweet</tt> struct in our
+example above:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>  <span style="color: #990000">...</span>
+  <span style="color: #008080">int32_t</span> userId<span style="color: #990000">;</span>
+  std<span style="color: #990000">::</span><span style="color: #008080">string</span> userName<span style="color: #990000">;</span>
+  std<span style="color: #990000">::</span><span style="color: #008080">string</span> text<span style="color: #990000">;</span>
+  <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>
+  TweetType<span style="color: #990000">::</span><span style="color: #008080">type</span> tweetType<span style="color: #990000">;</span>
+  std<span style="color: #990000">::</span><span style="color: #008080">string</span> language<span style="color: #990000">;</span>
+  <span style="color: #990000">...</span></tt></pre></div></div>
+<div class="paragraph"><p>As you can see, the nested <tt>Location</tt> structure is <strong>fully allocated inline</strong>.
+Because <tt>Location</tt> is optional, the code uses the internal <em>__isset</em> flags to
+determine if the field has actually been "set" by the user.</p></div>
+<div class="paragraph"><p>This can lead to some surprising and unintuitive behavior:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Since the full size of every sub-structure may be allocated at initialization
+  in some languages, memory usage may be higher than you expect, especially for
+  complicated structures with many unset fields.
+</p>
+</li>
+<li>
+<p>
+The parameters and return types for service methods may not be "optional" and
+  you can&#8217;t assign or return <tt>null</tt> in any dynamic language. Thus to return a
+  "no value" result from a method, you must declare an envelope structure with
+  an optional field containing the value and then return the envelope with that
+  field unset.
+</p>
+</li>
+<li>
+<p>
+The transport layer can, however, marshal method calls from older versions of
+  a service definition with missing parameters. Thus, if the original service
+  contained a method <tt>postTweet(1: Tweet tweet)</tt> and a later version changes it
+  to <tt>postTweet(1: Tweet tweet, 2: string group)</tt>, then an older client invoking
+  the previous method will result in a newer server receiving the call with the
+  new parameter unset. If the new server is in Java, for instance, you may
+  in fact receive a <tt>null</tt> value for the new parameter. And yet you may not
+  declare a parameter to be nullable within the IDL.
+</p>
+</li>
+</ul></div>
+</div></div>
 </div>
 </div>
 <div class="sect2">
@@ -1962,7 +2025,7 @@ Changing a default value is generally OK, as long as you remember that default
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2011-03-16 10:30:47 PDT
+Last updated 2011-03-17 19:02:48 PDT
 </div>
 </div>
 </body>
