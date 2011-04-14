@@ -27,3 +27,47 @@ some surprises. For instance, if you have a struct named +tweetSearchResults+
 +tweetSearchResults+ (like the original struct). This will obviously not
 compile under Java.
 =============================================================================
+
+Types
+^^^^^
+
+Thrift maps the various base and container types to Java types as follows:
+
+* +bool+: +boolean+
+* +byte+: +byte+
+* +i16+: +short+
+* +i32+: +int+
+* +i64+: +long+
+* +double+: +double+
+* +string+: +String+
+* +list<t1>+: +List<t1>+
+* +set<t1>+: +Set<t1>+
+* +map<t1,t2>+: +Map<t1, t2>+
+
+As you can see, the mapping is straight forward and one-to-one for the most
+part. This is not surprising given that Java was the primary target language
+when the Thrift project began.
+
+Constants
+^^^^^^^^^
+
+Thrift puts all defined constants in a public class named +Constants+ as +public
+static final+ members. Constants of any of the primitive types are supported.
+
+[TIP]
+.Contain your Constants
+=============================================================================
+If you have multiple Thrift files (in the same namespace) containing const
+definitions, the Thrift compiler will overwrite the +Constants.java+ file with
+the definitions found in the file processed last. You _must_ either define all
+your constants in a single file, or invoke the compiler on a single file that
+includes all the other files.
+=============================================================================
+
+TODO
+^^^^
+* Lack of typedefs
+* Enums
+* Available transports and protocols
+* Sample code
+* Mutability
