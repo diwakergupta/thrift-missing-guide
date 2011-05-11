@@ -111,7 +111,7 @@ struct Tweet {
 Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
 structs, for that matter).
 
-Enumerator constants must be in the range of _postive_ 32-bit integers.
+Enumerator constants MUST be in the range of _postive_ 32-bit integers.
 
 Comments
 ~~~~~~~~

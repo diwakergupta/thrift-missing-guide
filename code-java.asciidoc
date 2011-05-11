@@ -48,6 +48,27 @@ As you can see, the mapping is straight forward and one-to-one for the most
 part. This is not surprising given that Java was the primary target language
 when the Thrift project began.
 
+Typedefs
+^^^^^^^^
+
+The Java language does not have any native support for "typedefs". So when the
+Thrit Java code generator encounters a typedef declaration, it merely
+substitutes it with the original type. That is, even though you may have
+typedefd +TypeA+ to +TypeB+, in the generated Java code, all references to
++TypeB+ will be replaced by +TypeA+.
+
+Consider the example IDL above. The declaration for +tweets+ in the generated
+code for +TweetSearchResults+ is simply +public List<Tweets> tweets+.
+
+Enums
+^^^^^
+
+Thrift enums map to Java +enum+ types. You can obtain the numeric value of an
+enum by using the +getValue+ method (via the interface +TEnum+). In addition,
+the compiler generates a +findByValue+ method to obtain the enum corresponding
+to a numeric value. This is more robust than using the +ordinal+ feature of Java
+enums.
+
 Constants
 ^^^^^^^^^
 
@@ -63,11 +84,3 @@ the definitions found in the file processed last. You _must_ either define all
 your constants in a single file, or invoke the compiler on a single file that
 includes all the other files.
 =============================================================================
-
-TODO
-^^^^
-* Lack of typedefs
-* Enums
-* Available transports and protocols
-* Sample code
-* Mutability

@@ -22,8 +22,10 @@ struct Tweet {
     16: optional string language = "english";
 }
 
+typedef list<Tweet> TweetList
+
 struct TweetSearchResult {
-    1: list<Tweet> tweets;
+    1: TweetList tweets;
 }
 
 const i32 MAX_RESULTS = 100;

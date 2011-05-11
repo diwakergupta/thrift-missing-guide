@@ -47,6 +47,12 @@ side to create new Transport objects for incoming connections.
 * +accept+
 * +close+
 
+Here are some of the transports available for majority of the Thrift-supported
+languages:
+
+* file: read/write to/from a file on disk
+* http: as the name suggests
+
 Protocol
 ^^^^^^^^
 
@@ -105,6 +111,15 @@ string = readString()
 Thrift Protocols are stream oriented by design. There is no need for any
 explicit framing. For instance, it is not necessary to know the length of a
 string or the number of items in a list before we start serializing them.
+
+Here are some of the protocols available for majority of the Thrift-supported
+languages:
+
+* binary: Fairly simple binary encoding -- the length and type of a field are
+  encoded as bytes followed by the actual value of the field.
+* compact: Described in
+  https://issues.apache.org/jira/browse/THRIFT-110[THRIFT-110]
+* json: 
 
 Processor
 ^^^^^^^^^
