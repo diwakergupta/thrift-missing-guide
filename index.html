@@ -586,7 +586,7 @@ footnotes: function () {
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br />
 <span id="email"><tt>&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</tt></span><br />
-<span id="revdate">2011-05-09</span>
+<span id="revdate">2011-05-11</span>
 <br /><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -881,7 +881,7 @@ Use the fully qualified name of the constant when assigning default values.
 </table></div>
 <div class="paragraph"><p>Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
 structs, for that matter).</p></div>
-<div class="paragraph"><p>Enumerator constants must be in the range of <em>postive</em> 32-bit integers.</p></div>
+<div class="paragraph"><p>Enumerator constants MUST be in the range of <em>postive</em> 32-bit integers.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_comments">Comments</h3>
@@ -1600,6 +1600,20 @@ side to create new Transport objects for incoming connections.</p></div>
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>Here are some of the transports available for majority of the Thrift-supported
+languages:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+file: read/write to/from a file on disk
+</p>
+</li>
+<li>
+<p>
+http: as the name suggests
+</p>
+</li>
+</ul></div>
 </div>
 <div class="sect3">
 <h4 id="_protocol">Protocol</h4>
@@ -1658,6 +1672,27 @@ string <span style="color: #990000">=</span> <span style="font-weight: bold"><sp
 <div class="paragraph"><p>Thrift Protocols are stream oriented by design. There is no need for any
 explicit framing. For instance, it is not necessary to know the length of a
 string or the number of items in a list before we start serializing them.</p></div>
+<div class="paragraph"><p>Here are some of the protocols available for majority of the Thrift-supported
+languages:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+binary: Fairly simple binary encoding&#8201;&#8212;&#8201;the length and type of a field are
+  encoded as bytes followed by the actual value of the field.
+</p>
+</li>
+<li>
+<p>
+compact: Described in
+  <a href="https://issues.apache.org/jira/browse/THRIFT-110">THRIFT-110</a>
+</p>
+</li>
+<li>
+<p>
+json:
+</p>
+</li>
+</ul></div>
 </div>
 <div class="sect3">
 <h4 id="_processor">Processor</h4>
@@ -1734,8 +1769,10 @@ http://www.gnu.org/software/src-highlite -->
     <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span><span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span>
 
+<span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> list<span style="color: #990000">&lt;</span>Tweet<span style="color: #990000">&gt;</span> TweetList
+
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">TweetSearchResult</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">list&lt;Tweet&gt;</span> tweets<span style="color: #990000">;</span>
+    <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">TweetList</span> tweets<span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span>
 
 <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">i32</span> MAX_RESULTS <span style="color: #990000">=</span> <span style="color: #993399">100</span><span style="color: #990000">;</span>
@@ -1962,6 +1999,24 @@ part. This is not surprising given that Java was the primary target language
 when the Thrift project began.</p></div>
 </div>
 <div class="sect3">
+<h4 id="_typedefs_2">Typedefs</h4>
+<div class="paragraph"><p>The Java language does not have any native support for "typedefs". So when the
+Thrit Java code generator encounters a typedef declaration, it merely
+substitutes it with the original type. That is, even though you may have
+typedefd <tt>TypeA</tt> to <tt>TypeB</tt>, in the generated Java code, all references to
+<tt>TypeB</tt> will be replaced by <tt>TypeA</tt>.</p></div>
+<div class="paragraph"><p>Consider the example IDL above. The declaration for <tt>tweets</tt> in the generated
+code for <tt>TweetSearchResults</tt> is simply <tt>public List&lt;Tweets&gt; tweets</tt>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_enums_2">Enums</h4>
+<div class="paragraph"><p>Thrift enums map to Java <tt>enum</tt> types. You can obtain the numeric value of an
+enum by using the <tt>getValue</tt> method (via the interface <tt>TEnum</tt>). In addition,
+the compiler generates a <tt>findByValue</tt> method to obtain the enum corresponding
+to a numeric value. This is more robust than using the <tt>ordinal</tt> feature of Java
+enums.</p></div>
+</div>
+<div class="sect3">
 <h4 id="_constants_2">Constants</h4>
 <div class="paragraph"><p>Thrift puts all defined constants in a public class named <tt>Constants</tt> as <tt>public
 static final</tt> members. Constants of any of the primitive types are supported.</p></div>
@@ -2028,36 +2083,6 @@ includes all the other files.</p></div>
 </td>
 </tr></table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_todo">TODO</h4>
-<div class="ulist"><ul>
-<li>
-<p>
-Lack of typedefs
-</p>
-</li>
-<li>
-<p>
-Enums
-</p>
-</li>
-<li>
-<p>
-Available transports and protocols
-</p>
-</li>
-<li>
-<p>
-Sample code
-</p>
-</li>
-<li>
-<p>
-Mutability
-</p>
-</li>
-</ul></div>
 </div>
 </div>
 <div class="sect2">
