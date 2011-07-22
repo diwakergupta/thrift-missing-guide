@@ -586,7 +586,7 @@ footnotes: function () {
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br />
 <span id="email"><tt>&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</tt></span><br />
-<span id="revdate">2011-05-11</span>
+<span id="revdate">2011-07-22</span>
 <br /><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -2117,6 +2117,62 @@ each service gets its own <tt>.cpp/.h</tt> pair
 |-- Twitter.h
 `-- Twitter_server.skeleton.cpp</tt></pre>
 </div></div>
+</div>
+<div class="sect3">
+<h4 id="_types_3">Types</h4>
+<div class="paragraph"><p>Thrift maps the various base and container types to C++ types as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>bool</tt>: <tt>bool</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>byte</tt>: <tt>int8_t</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>i16</tt>: <tt>int16_t</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>i32</tt>: <tt>int32_t</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>i64</tt>: <tt>int64_t</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>double</tt>: <tt>double</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>string</tt>: <tt>std::string</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>list&lt;t1&gt;</tt>: <tt>std::vector&lt;t1&gt;</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>set&lt;t1&gt;</tt>: <tt>std::set&lt;t1&gt;</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>map&lt;t1,t2&gt;</tt>: <tt>std::maP&lt;T1, T2&gt;</tt>
+</p>
+</li>
+</ul></div>
 </div>
 </div>
 <div class="sect2">
