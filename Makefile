@@ -1,10 +1,12 @@
 default:
 	asciidoc \
-		-a toc \
+		-b html5 \
+		-a theme=flask \
+		-a toc2 \
 		-a data-uri \
 		-a docinfo \
 		-a icons \
-		-a iconsdir=/usr/local/etc/asciidoc/images/icons \
+		-a iconsdir=/home/diwaker/local/asciidoc/images/icons \
 		-o index.html \
 		thrift.asciidoc
 
@@ -14,7 +16,7 @@ pdf:
 		-a data-uri \
 		-a docinfo \
 		-a icons \
-		-a iconsdir=/usr/local/etc/asciidoc/images/icons \
+		-a iconsdir=/home/diwaker/local/asciidoc/images/icons \
 		-a pygments \
 		thrift.asciidoc
 
