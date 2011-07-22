@@ -1,29 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.4" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.5">
 <title>Thrift: The Missing Guide</title>
 <style type="text/css">
-/* Sans-serif font. */
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
 h1, h2, h3, h4, h5, h6,
 div.title, caption.title,
 thead, p.table.header,
-div#toctitle,
-span#author, span#revnumber, span#revdate, span#revremark,
-div#footer {
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
   font-family: Arial,Helvetica,sans-serif;
-}
-
-/* Serif font. */
-div.sectionbody {
-  font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-/* Monospace font. */
-tt {
-  font-size: inherit;
 }
 
 body {
@@ -48,11 +44,6 @@ strong {
   color: #083194;
 }
 
-tt {
-  font-size: inherit;
-  color: navy;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: #527bbd;
   margin-top: 1.2em;
@@ -71,6 +62,9 @@ h3 {
 }
 h3 + * {
   clear: left;
+}
+h5 {
+  font-size: 1.0em;
 }
 
 div.sectionbody {
@@ -97,36 +91,36 @@ pre {
   margin: 0;
 }
 
-span#author {
+#author {
   color: #527bbd;
   font-weight: bold;
   font-size: 1.1em;
 }
-span#email {
+#email {
 }
-span#revnumber, span#revdate, span#revremark {
+#revnumber, #revdate, #revremark {
 }
 
-div#footer {
+#footer {
   font-size: small;
   border-top: 2px solid silver;
   padding-top: 0.5em;
   margin-top: 4.0em;
 }
-div#footer-text {
+#footer-text {
   float: left;
   padding-bottom: 0.5em;
 }
-div#footer-badges {
+#footer-badges {
   float: right;
   padding-bottom: 0.5em;
 }
 
-div#preamble {
+#preamble {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
 }
-div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.imageblock, div.exampleblock, div.verseblock,
 div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
 div.admonitionblock {
   margin-top: 1.0em;
@@ -267,35 +261,12 @@ div.compact div, div.compact div {
   margin-bottom: 0.1em;
 }
 
-div.tableblock > table {
-  border: 3px solid #527bbd;
-}
-thead, p.table.header {
-  font-weight: bold;
-  color: #527bbd;
-}
 tfoot {
   font-weight: bold;
 }
 td > div.verse {
   white-space: pre;
 }
-p.table {
-  margin-top: 0;
-}
-/* Because the table frame attribute is overriden by CSS in most browsers. */
-div.tableblock > table[frame="void"] {
-  border-style: none;
-}
-div.tableblock > table[frame="hsides"] {
-  border-left-style: none;
-  border-right-style: none;
-}
-div.tableblock > table[frame="vsides"] {
-  border-top-style: none;
-  border-bottom-style: none;
-}
-
 
 div.hdlist {
   margin-top: 0.8em;
@@ -362,14 +333,14 @@ div.colist td img {
 }
 
 @media print {
-  div#footer-badges { display: none; }
+  #footer-badges { display: none; }
 }
 
-div#toc {
+#toc {
   margin-bottom: 2.5em;
 }
 
-div#toctitle {
+#toctitle {
   color: #527bbd;
   font-size: 1.1em;
   font-weight: bold;
@@ -430,10 +401,244 @@ span.yellow-background { background: yellow; }
 
 span.big { font-size: 2em; }
 span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
 </style>
 <script type="text/javascript">
 /*<![CDATA[*/
-window.onload = function(){asciidoc.footnotes(); asciidoc.toc(2);}
 var asciidoc = {  // Namespace.
 
 /////////////////////////////////////////////////////////////////////
@@ -495,6 +700,25 @@ toc: function (toclevels) {
   }
 
   var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName == 'DIV'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
   var entries = tocEntries(document.getElementById("content"), toclevels);
   for (var i = 0; i < entries.length; ++i) {
     var entry = entries[i];
@@ -522,24 +746,44 @@ toc: function (toclevels) {
  */
 
 footnotes: function () {
-  var cont = document.getElementById("content");
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
   var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
   var spans = cont.getElementsByTagName("span");
   var refs = {};
   var n = 0;
   for (i=0; i<spans.length; i++) {
     if (spans[i].className == "footnote") {
       n++;
-      // Use [\s\S] in place of . so multi-line matches work.
-      // Because JavaScript has no s (dotall) regex flag.
-      note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
       noteholder.innerHTML +=
         "<div class='footnote' id='_footnote_" + n + "'>" +
         "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
         n + "</a>. " + note + "</div>";
-      spans[i].innerHTML =
-        "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
-        "' title='View footnote' class='footnote'>" + n + "</a>]";
       var id =spans[i].getAttribute("id");
       if (id != null) refs["#"+id] = n;
     }
@@ -559,9 +803,32 @@ footnotes: function () {
       }
     }
   }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
 }
 
 }
+asciidoc.install(2);
 /*]]>*/
 </script>
 <meta name="description" content="A comprehensive guide and reference documentation for Thrift"/>
@@ -584,10 +851,10 @@ footnotes: function () {
 <body class="article">
 <div id="header">
 <h1>Thrift: The Missing Guide</h1>
-<span id="author">Diwaker Gupta</span><br />
-<span id="email"><tt>&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</tt></span><br />
+<span id="author">Diwaker Gupta</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
 <span id="revdate">2011-07-22</span>
-<br /><span id="revremark">Written against Thrift 0.6.0</span>
+<br><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -642,37 +909,37 @@ container types, exceptions and service definitions.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>bool</tt>: A boolean value (true or false), one byte
+<span class="monospaced">bool</span>: A boolean value (true or false), one byte
 </p>
 </li>
 <li>
 <p>
-<tt>byte</tt>: A signed byte
+<span class="monospaced">byte</span>: A signed byte
 </p>
 </li>
 <li>
 <p>
-<tt>i16</tt>: A 16-bit signed integer
+<span class="monospaced">i16</span>: A 16-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<tt>i32</tt>: A 32-bit signed integer
+<span class="monospaced">i32</span>: A 32-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<tt>i64</tt>: A 64-bit signed integer
+<span class="monospaced">i64</span>: A 64-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<tt>double</tt>: A 64-bit floating point number
+<span class="monospaced">double</span>: A 64-bit floating point number
 </p>
 </li>
 <li>
 <p>
-<tt>string</tt>: Encoding agnostic text or binary string
+<span class="monospaced">string</span>: Encoding agnostic text or binary string
 </p>
 </li>
 </ul></div>
@@ -687,18 +954,18 @@ Java Generics style. There are three containers types available:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>list&lt;t1&gt;</tt>: An ordered list of elements of type <tt>t1</tt>. May contain duplicates.
+<span class="monospaced">list&lt;t1&gt;</span>: An ordered list of elements of type <span class="monospaced">t1</span>. May contain duplicates.
 </p>
 </li>
 <li>
 <p>
-<tt>set&lt;t1&gt;</tt>: An unordered set of unique elements of type <tt>t1</tt>.
+<span class="monospaced">set&lt;t1&gt;</span>: An unordered set of unique elements of type <span class="monospaced">t1</span>.
 </p>
 </li>
 <li>
 <p>
-<tt>map&lt;t1,t2&gt;</tt>: A map of strictly unique keys of type <tt>t1</tt> to values of type
-  <tt>t2</tt>.
+<span class="monospaced">map&lt;t1,t2&gt;</span>: A map of strictly unique keys of type <span class="monospaced">t1</span> to values of type
+  <span class="monospaced">t2</span>.
 </p>
 </li>
 </ul></div>
@@ -707,11 +974,11 @@ exceptions) excluding services.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_structs_and_exceptions">Structs and Exceptions</h4>
-<div class="paragraph"><p>A Thrift struct is conceptually similar to a <tt>C</tt> struct&#8201;&#8212;&#8201;a convenient way of
+<div class="paragraph"><p>A Thrift struct is conceptually similar to a <span class="monospaced">C</span> struct&#8201;&#8212;&#8201;a convenient way of
 grouping together (and encapsulating) related items. Structs translate to
 classes in object-oriented languages.</p></div>
 <div class="paragraph"><p>Exceptions are syntactically and functionally equivalent to structs except that
-they are declared using the <tt>exception</tt> keyword instead of the <tt>struct</tt> keyword.
+they are declared using the <span class="monospaced">exception</span> keyword instead of the <span class="monospaced">struct</span> keyword.
 They differ from structs in semantics&#8201;&#8212;&#8201;when defining RPC services, developers
 may declare that a remote method throws an exception.</p></div>
 <div class="paragraph"><p>Details on defining structs and exceptions are the subject of a
@@ -719,7 +986,7 @@ may declare that a remote method throws an exception.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_services">Services</h4>
-<div class="paragraph"><p>Service definitions are semantically equivalent to defining an <tt>interface</tt> (or a
+<div class="paragraph"><p>Service definitions are semantically equivalent to defining an <span class="monospaced">interface</span> (or a
 pure virtual abstract class) in object-oriented programming. The Thrift compiler
 generates fully functional client and server stubs that implement the interface.</p></div>
 <div class="paragraph"><p>Details on defining services are the subject of a <a href="#_defining_services">later section</a>.</p></div>
@@ -739,7 +1006,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
 <span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> <span style="color: #008080">Tweet</span> ReTweet   <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -747,14 +1014,14 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span></tt></pre></div></div>
+AAAASUVORK5CYII="></span></span></tt></pre></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 Note there is no trailing semi-colon
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
@@ -763,7 +1030,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
+AAAASUVORK5CYII="></td><td>
 Structs can also be used in typedefs
 </td></tr>
 </table></div>
@@ -772,12 +1039,12 @@ Structs can also be used in typedefs
 <h3 id="_enums">Enums</h3>
 <div class="paragraph"><p>When you&#8217;re defining a message type, you might want one of its fields to only
 have one of a pre-defined list of values. For example, let&#8217;s say you want to add
-a <tt>tweetType</tt> field for each <tt>Tweet</tt>, where the <tt>tweetType</tt> can be
-<tt>TWEET</tt>, <tt>RETWEET</tt>, <tt>DM</tt>, or <tt>REPLY</tt>. You can do this very simply by
+a <span class="monospaced">tweetType</span> field for each <span class="monospaced">Tweet</span>, where the <span class="monospaced">tweetType</span> can be
+<span class="monospaced">TWEET</span>, <span class="monospaced">RETWEET</span>, <span class="monospaced">DM</span>, or <span class="monospaced">REPLY</span>. You can do this very simply by
 adding an enum to your message definition&#8201;&#8212;&#8201;a field with an enum type can only
 have one of a specified set of constants as its value (if you try to provide a
 different value, the parser will treat it like an unknown field). In the
-following example we&#8217;ve added an enum called <tt>TweetType</tt> with all the possible
+following example we&#8217;ve added an enum called <span class="monospaced">TweetType</span> with all the possible
 values, and a field of the same type:</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.4
@@ -791,7 +1058,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
     RETWEET <span style="color: #990000">=</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -799,7 +1066,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span>
+AAAASUVORK5CYII="></span></span>
     DM <span style="color: #990000">=</span> <span style="color: #993399">0xa</span><span style="color: #990000">,</span>    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -807,7 +1074,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></span></span>
+SUVORK5CYII="></span></span>
     REPLY
 <span style="color: #FF0000">}</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
@@ -816,7 +1083,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></span></span>
+QmCC"></span></span>
 
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
     <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>
@@ -830,7 +1097,7 @@ A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC" /></span></span>
+TkSuQmCC"></span></span>
     <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><table>
@@ -839,7 +1106,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 Enums are specified C-style. Compiler assigns default values starting at 0.
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
@@ -848,7 +1115,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
+AAAASUVORK5CYII="></td><td>
 You can of course, supply specific integral values for constants.
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
@@ -857,7 +1124,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></td><td>
+SUVORK5CYII="></td><td>
 Hex values are also acceptable.
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
@@ -866,7 +1133,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></td><td>
+QmCC"></td><td>
 Again notice no trailing semi-colon
 </td></tr>
 <tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
@@ -875,7 +1142,7 @@ A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC" /></td><td>
+TkSuQmCC"></td><td>
 Use the fully qualified name of the constant when assigning default values.
 </td></tr>
 </table></div>
@@ -920,7 +1187,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
 <span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">java</span> com<span style="color: #990000">.</span>example<span style="color: #990000">.</span>project <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -928,15 +1195,15 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span></tt></pre></div></div>
+AAAASUVORK5CYII="></span></span></tt></pre></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
-Translates to <tt>namespace com { namespace example { namespace project {</tt>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
+Translates to <span class="monospaced">namespace com { namespace example { namespace project {</span>
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -944,8 +1211,8 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
-Translates to <tt>package com.example.project</tt>
+AAAASUVORK5CYII="></td><td>
+Translates to <span class="monospaced">package com.example.project</span>
 </td></tr>
 </table></div>
 </div>
@@ -954,7 +1221,7 @@ Translates to <tt>package com.example.project</tt>
 <div class="paragraph"><p>It is often useful to split up Thrift definitions in separate files to ease
 maintainance, enable reuse and improve modularity/organization. Thrift allows
 files to <em>include</em> other Thrift files. Included files are looked up in the
-current directory and by searching relative to any paths specified with the <tt>-I</tt>
+current directory and by searching relative to any paths specified with the <span class="monospaced">-I</span>
 compiler flag.</p></div>
 <div class="paragraph"><p>Included objects are accessed using the name of the Thrift file as a prefix.</p></div>
 <div class="listingblock">
@@ -968,7 +1235,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
 <span style="color: #990000">...</span>
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">TweetSearchResult</span> <span style="color: #FF0000">{</span>
     <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">list&lt;tweet.Tweet&gt;</span> tweets<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
@@ -978,7 +1245,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span>
+AAAASUVORK5CYII="></span></span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
@@ -986,7 +1253,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 File names must be quoted; again notice the absent semi-colon.
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
@@ -995,8 +1262,8 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
-Note the <tt>tweet</tt> prefix.
+AAAASUVORK5CYII="></td><td>
+Note the <span class="monospaced">tweet</span> prefix.
 </td></tr>
 </table></div>
 </div>
@@ -1015,7 +1282,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
 <span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">map&lt;string,string&gt;</span> MAP_CONST <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #FF0000">"hello"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"world"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"goodnight"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"moon"</span><span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
@@ -1023,7 +1290,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 Semi-colon is (confusingly) optional; hex values are valid here.
 </td></tr>
 </table></div>
@@ -1034,7 +1301,7 @@ Semi-colon is (confusingly) optional; hex values are valid here.
 in a Thrift IDL. A struct is composed of <em>fields</em>; each field has a unique
 integer identifier, a type, a name and an optional default value.</p></div>
 <div class="paragraph"><p>Consider a simple example. Suppose you want to build a
-<a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <tt>Tweet</tt>:</p></div>
+<a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <span class="monospaced">Tweet</span>:</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.4
 by Lorenzo Bettini
@@ -1047,7 +1314,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
     <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>             <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1055,7 +1322,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span>
+AAAASUVORK5CYII="></span></span>
     <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
     <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
@@ -1064,7 +1331,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></span></span>
+SUVORK5CYII="></span></span>
     <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
@@ -1072,7 +1339,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></span></span>
+QmCC"></span></span>
 <span style="color: #FF0000">}</span>
 
 <span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Location</span> <span style="color: #FF0000">{</span>                            <span style="font-style: italic"><span style="color: #9A1900">// <img alt="5" src="data:image/png;base64,
@@ -1082,7 +1349,7 @@ A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC" /></span></span>
+TkSuQmCC"></span></span>
     <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> latitude<span style="color: #990000">;</span>
     <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> longitude<span style="color: #990000">;</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
@@ -1092,7 +1359,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 Every field <strong>must</strong> have a unique, positive integer identifier
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
@@ -1101,8 +1368,8 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
-Fields may be marked as <tt>required</tt> or <tt>optional</tt>
+AAAASUVORK5CYII="></td><td>
+Fields may be marked as <span class="monospaced">required</span> or <span class="monospaced">optional</span>
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -1110,7 +1377,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></td><td>
+SUVORK5CYII="></td><td>
 Structs may contain other structs
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
@@ -1119,7 +1386,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></td><td>
+QmCC"></td><td>
 You may specify an optional "default" value for a field
 </td></tr>
 <tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
@@ -1128,14 +1395,14 @@ A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC" /></td><td>
+TkSuQmCC"></td><td>
 Multiple structs can be defined and referred to within the same Thrift file
 </td></tr>
 </table></div>
 <div class="paragraph"><p>As you can see, each field in the message definition has a unique numbered tag.
 These tags are used to identify your fields in the wire format, and should not
 be changed once your message type is in use.</p></div>
-<div class="paragraph"><p>Fields may be marked <tt>required</tt> or <tt>optional</tt> with obvious meanings for
+<div class="paragraph"><p>Fields may be marked <span class="monospaced">required</span> or <span class="monospaced">optional</span> with obvious meanings for
 well-formed structs. Thrift will complain if required fields have not been set
 in a struct, for instance. If an optional field has not been set in the struct,
 it will not be serialized over the wire. If a default value has been specified
@@ -1203,7 +1470,7 @@ P/a7VM8emUg0VcbK+fPn2bp1KytWrBgW/JAEEknU1NTw7LPPMn/+/GFBZQI8lZw/f57nnnuO5cuX
 M2XKlGHBD0sgkURdXR2PP/44FRUVNwV+qP7Tp09z8ODBjNxmRAQSSRw4cIBly5axdOnSvwh4RVH4
 4osv2L9/P2VlZRlbfkQEEkls376djo4OQqHE83bk4nK5EEKwZs0aSktLRwR+RATgOxItLS1cu3aN
 vr6+wTfK/4tEfzeeMmUKkydPzhg8jJAAREgEg0H6+vrQNC2pFL8ZUVWVrKws8vPzycnJQVXVjH/s
-/F/lgJiyQFHragAAAABJRU5ErkJggg==" />
+/F/lgJiyQFHragAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
 <div class="title">Required Is Forever</div>You should be very careful about marking fields as required. If at some point
@@ -1244,7 +1511,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></span></span>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
     <span style="color: #008080">bool</span> <span style="font-weight: bold"><span style="color: #000000">postTweet</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">Tweet</span> tweet<span style="color: #990000">);</span>                  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1252,7 +1519,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></span></span>
+AAAASUVORK5CYII="></span></span>
     <span style="color: #008080">TweetSearchResult</span> <span style="font-weight: bold"><span style="color: #000000">searchTweets</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">string</span> query<span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -1260,7 +1527,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></span></span>
+SUVORK5CYII="></span></span>
 
     <span style="font-style: italic"><span style="color: #9A1900">// The 'oneway' modifier indicates that the client only makes a request and</span></span>
     <span style="font-style: italic"><span style="color: #9A1900">// does not wait for any response at all. Oneway methods MUST be void.</span></span>
@@ -1271,7 +1538,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></span></span>
+QmCC"></span></span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
@@ -1279,7 +1546,7 @@ VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
 Confusingly, method definitions can be terminated using comma or semi-colon
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
@@ -1288,7 +1555,7 @@ Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII=" /></td><td>
+AAAASUVORK5CYII="></td><td>
 Arguments can be primitive types or structs
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
@@ -1297,7 +1564,7 @@ JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII=" /></td><td>
+SUVORK5CYII="></td><td>
 Likewise for return types
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
@@ -1306,14 +1573,14 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC" /></td><td>
-<tt>void</tt> is a valid return type for functions
+QmCC"></td><td>
+<span class="monospaced">void</span> is a valid return type for functions
 </td></tr>
 </table></div>
 <div class="paragraph"><p>Note that the argument lists (and exception lists) for functions are specified
 exactly like structs.</p></div>
 <div class="paragraph"><p>Services support inheritance: a service may optionally inherit from another
-service using the <tt>extends</tt> keyword.</p></div>
+service using the <span class="monospaced">extends</span> keyword.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -1370,7 +1637,7 @@ pazUbi4Oc7Y+snKCzWbDZrMhSRKSJGG3262w6HK5cLlceDwevF4vPp8Pr9eL2+3G5XLhcDjMkxuE
 TNibdcBhnv9qmkYqlSKZTJJIJFAUhXg8jqIoKIpCIpGwSCSTSVRVtWSuk3qTiAnebrfngHc4HDid
 TpxOJy6Xy7qWZdk6wZzrxCbvCY1JRNd1NE3LAWgSM69ngp+PgCiK1gF3NhFTzHvmO+Y3wCzw8xLI
 JpL5tYCZpEyw2f/nWt1ag2UtM0x3Mq1iAp1j+bH0M7KFCGWDnfmbd8AMnuxfUzL/C0rp/wFnFd4n
-EQn3XQAAAABJRU5ErkJggg==" />
+EQn3XQAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
 <div class="title">Nested Types</div>As of this writing, Thrift does NOT nested type <em>definitions</em>. That is, you may
@@ -1537,7 +1804,7 @@ IaRl5EYZUp6ULeXMWNF3c3Ozvky0TfpW0e+CWkIIIS0jN8qQ8qRsKWfGir7Pnz+vrdH3iTaroaHh
 DCGEkJaRG2VIeVK2lDNjRd+EEEIuaNA3IYSgb0IIIeibEEII+iaEEPRNCCEEfRNCCEHfhBCCvgkh
 hKBvQggh6JsQQgj6JoQQ9E0IIQR9E0IIQd+EEIK+CSGEoG9CCCHomxBC0DcHhRBC0DchhBD0TQgh
 BH0TQgj6JoQQgr4JIYSgb0IIQd+EEEJiW9+EEELiKOibEELQNyGEkIuV/wG4V5osXHbyLAAAAABJ
-RU5ErkJggg==" />
+RU5ErkJggg==">
 </div>
 <div class="title">Figure 1. The Thrift Network Stack</div>
 </div>
@@ -1546,57 +1813,57 @@ RU5ErkJggg==" />
 <div class="paragraph"><p>The Transport layer provides a simple abstraction for reading/writing from/to
 the network. This enables Thrift to decouple the underlying transport from the
 rest of the system (serialization/deserialization, for instance).</p></div>
-<div class="paragraph"><p>Here are some of the methods exposed by the <tt>Transport</tt> interface:</p></div>
+<div class="paragraph"><p>Here are some of the methods exposed by the <span class="monospaced">Transport</span> interface:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>open</tt>
+<span class="monospaced">open</span>
 </p>
 </li>
 <li>
 <p>
-<tt>close</tt>
+<span class="monospaced">close</span>
 </p>
 </li>
 <li>
 <p>
-<tt>read</tt>
+<span class="monospaced">read</span>
 </p>
 </li>
 <li>
 <p>
-<tt>write</tt>
+<span class="monospaced">write</span>
 </p>
 </li>
 <li>
 <p>
-<tt>flush</tt>
+<span class="monospaced">flush</span>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>In addition to the <tt>Transport</tt> interface above, Thrift also uses a
-<tt>ServerTransport</tt> interface used to accept or create primitive transport
-objects. As the name suggest, <tt>ServerTransport</tt> is used mainly on the server
+<div class="paragraph"><p>In addition to the <span class="monospaced">Transport</span> interface above, Thrift also uses a
+<span class="monospaced">ServerTransport</span> interface used to accept or create primitive transport
+objects. As the name suggest, <span class="monospaced">ServerTransport</span> is used mainly on the server
 side to create new Transport objects for incoming connections.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>open</tt>
+<span class="monospaced">open</span>
 </p>
 </li>
 <li>
 <p>
-<tt>listen</tt>
+<span class="monospaced">listen</span>
 </p>
 </li>
 <li>
 <p>
-<tt>accept</tt>
+<span class="monospaced">accept</span>
 </p>
 </li>
 <li>
 <p>
-<tt>close</tt>
+<span class="monospaced">close</span>
 </p>
 </li>
 </ul></div>
@@ -1623,7 +1890,7 @@ underlying Transport to encode/decode themselves.  Thus the protocol
 implementation governs the encoding scheme and is responsible for
 (de)serialization. Some examples of protocols in this sense include JSON, XML,
 plain text, compact binary etc.</p></div>
-<div class="paragraph"><p>Here is the <tt>Protocol</tt> interface:</p></div>
+<div class="paragraph"><p>Here is the <span class="monospaced">Protocol</span> interface:</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.4
 by Lorenzo Bettini
@@ -1793,7 +2060,7 @@ Thrift initializes nested structs. One reasonable approach would be to treat the
 nested structs as pointers or references and initialize them with NULL, until
 explicitly set by the user.</p></div>
 <div class="paragraph"><p>Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a
-concrete example, consider the generated C++ code for the <tt>Tweet</tt> struct in our
+concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
 example above:</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.4
@@ -1808,8 +2075,8 @@ http://www.gnu.org/software/src-highlite -->
   TweetType<span style="color: #990000">::</span><span style="color: #008080">type</span> tweetType<span style="color: #990000">;</span>
   std<span style="color: #990000">::</span><span style="color: #008080">string</span> language<span style="color: #990000">;</span>
   <span style="color: #990000">...</span></tt></pre></div></div>
-<div class="paragraph"><p>As you can see, the nested <tt>Location</tt> structure is <strong>fully allocated inline</strong>.
-Because <tt>Location</tt> is optional, the code uses the internal <em>__isset</em> flags to
+<div class="paragraph"><p>As you can see, the nested <span class="monospaced">Location</span> structure is <strong>fully allocated inline</strong>.
+Because <span class="monospaced">Location</span> is optional, the code uses the internal <em>__isset</em> flags to
 determine if the field has actually been "set" by the user.</p></div>
 <div class="paragraph"><p>This can lead to some surprising and unintuitive behavior:</p></div>
 <div class="ulist"><ul>
@@ -1823,7 +2090,7 @@ Since the full size of every sub-structure may be allocated at initialization
 <li>
 <p>
 The parameters and return types for service methods may not be "optional" and
-  you can&#8217;t assign or return <tt>null</tt> in any dynamic language. Thus to return a
+  you can&#8217;t assign or return <span class="monospaced">null</span> in any dynamic language. Thus to return a
   "no value" result from a method, you must declare an envelope structure with
   an optional field containing the value and then return the envelope with that
   field unset.
@@ -1833,11 +2100,11 @@ The parameters and return types for service methods may not be "optional" and
 <p>
 The transport layer can, however, marshal method calls from older versions of
   a service definition with missing parameters. Thus, if the original service
-  contained a method <tt>postTweet(1: Tweet tweet)</tt> and a later version changes it
-  to <tt>postTweet(1: Tweet tweet, 2: string group)</tt>, then an older client invoking
+  contained a method <span class="monospaced">postTweet(1: Tweet tweet)</span> and a later version changes it
+  to <span class="monospaced">postTweet(1: Tweet tweet, 2: string group)</span>, then an older client invoking
   the previous method will result in a newer server receiving the call with the
   new parameter unset. If the new server is in Java, for instance, you may
-  in fact receive a <tt>null</tt> value for the new parameter. And yet you may not
+  in fact receive a <span class="monospaced">null</span> value for the new parameter. And yet you may not
   declare a parameter to be nullable within the IDL.
 </p>
 </li>
@@ -1852,7 +2119,7 @@ The transport layer can, however, marshal method calls from older versions of
 <div class="ulist"><ul>
 <li>
 <p>
-a single file (<tt>Constants.java</tt>) containing all constant definitions
+a single file (<span class="monospaced">Constants.java</span>) containing all constant definitions
 </p>
 </li>
 <li>
@@ -1862,8 +2129,8 @@ one file per struct, enum and service
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content">
-<pre><tt>$ tree gen-java
+<div class="content monospaced">
+<pre>$ tree gen-java
 `-- thrift
     `-- example
         |-- Constants.java
@@ -1871,7 +2138,7 @@ one file per struct, enum and service
         |-- Tweet.java
         |-- TweetSearchResult.java
         |-- TweetType.java
-        `-- Twitter.java</tt></pre>
+        `-- Twitter.java</pre>
 </div></div>
 <div class="admonitionblock">
 <table><tr>
@@ -1924,16 +2191,16 @@ F11dXdTUL2BO/Xx8/goEUcSxbYSJ2EGS5IlzgnSC/r4PuXzmOEuXLmXlypXU19cTCoUIh8OEQqEr
 7k5/7vOBdDpNMpkkkUiQSCTo7u7m6NGjnD59mv7+fqLRKIZhoCgKoVCI2tpampqaWLRoES0tLfh8
 Pvx+P8FgkGAw+OWfD7gj94RG13U0TSOdTpNOp8lMbmQ0TcvbArrrK1mW8Xg8eL3e7BLB5/N9dSc0
 uSP3jMwwjKy4G3AXwB0ugAsx5YzMndW//DOy3OFMjGwrxrKs7NX9LBfAneFFUcxec6rU5zqpvCqA
-qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC" />
+qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC">
 </td>
 <td class="content">
 <div class="title">Naming Conventions</div>
 <div class="paragraph"><p>While the Thrift compiler does not enforce any naming conventions, it is
 advisable to stick to standard naming conventions otherwise you may be in for
-some surprises. For instance, if you have a struct named <tt>tweetSearchResults</tt>
+some surprises. For instance, if you have a struct named <span class="monospaced">tweetSearchResults</span>
 (note the mixedCase), the Thrift compiler will generated a Java file named
-<tt>TweetSearchResults</tt> (note the CamelCase) containing a class named
-<tt>tweetSearchResults</tt> (like the original struct). This will obviously not
+<span class="monospaced">TweetSearchResults</span> (note the CamelCase) containing a class named
+<span class="monospaced">tweetSearchResults</span> (like the original struct). This will obviously not
 compile under Java.</p></div>
 </td>
 </tr></table>
@@ -1945,52 +2212,52 @@ compile under Java.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>bool</tt>: <tt>boolean</tt>
+<span class="monospaced">bool</span>: <span class="monospaced">boolean</span>
 </p>
 </li>
 <li>
 <p>
-<tt>byte</tt>: <tt>byte</tt>
+<span class="monospaced">byte</span>: <span class="monospaced">byte</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i16</tt>: <tt>short</tt>
+<span class="monospaced">i16</span>: <span class="monospaced">short</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i32</tt>: <tt>int</tt>
+<span class="monospaced">i32</span>: <span class="monospaced">int</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i64</tt>: <tt>long</tt>
+<span class="monospaced">i64</span>: <span class="monospaced">long</span>
 </p>
 </li>
 <li>
 <p>
-<tt>double</tt>: <tt>double</tt>
+<span class="monospaced">double</span>: <span class="monospaced">double</span>
 </p>
 </li>
 <li>
 <p>
-<tt>string</tt>: <tt>String</tt>
+<span class="monospaced">string</span>: <span class="monospaced">String</span>
 </p>
 </li>
 <li>
 <p>
-<tt>list&lt;t1&gt;</tt>: <tt>List&lt;t1&gt;</tt>
+<span class="monospaced">list&lt;t1&gt;</span>: <span class="monospaced">List&lt;t1&gt;</span>
 </p>
 </li>
 <li>
 <p>
-<tt>set&lt;t1&gt;</tt>: <tt>Set&lt;t1&gt;</tt>
+<span class="monospaced">set&lt;t1&gt;</span>: <span class="monospaced">Set&lt;t1&gt;</span>
 </p>
 </li>
 <li>
 <p>
-<tt>map&lt;t1,t2&gt;</tt>: <tt>Map&lt;t1, t2&gt;</tt>
+<span class="monospaced">map&lt;t1,t2&gt;</span>: <span class="monospaced">Map&lt;t1, t2&gt;</span>
 </p>
 </li>
 </ul></div>
@@ -2003,23 +2270,23 @@ when the Thrift project began.</p></div>
 <div class="paragraph"><p>The Java language does not have any native support for "typedefs". So when the
 Thrit Java code generator encounters a typedef declaration, it merely
 substitutes it with the original type. That is, even though you may have
-typedefd <tt>TypeA</tt> to <tt>TypeB</tt>, in the generated Java code, all references to
-<tt>TypeB</tt> will be replaced by <tt>TypeA</tt>.</p></div>
-<div class="paragraph"><p>Consider the example IDL above. The declaration for <tt>tweets</tt> in the generated
-code for <tt>TweetSearchResults</tt> is simply <tt>public List&lt;Tweets&gt; tweets</tt>.</p></div>
+typedefd <span class="monospaced">TypeA</span> to <span class="monospaced">TypeB</span>, in the generated Java code, all references to
+<span class="monospaced">TypeB</span> will be replaced by <span class="monospaced">TypeA</span>.</p></div>
+<div class="paragraph"><p>Consider the example IDL above. The declaration for <span class="monospaced">tweets</span> in the generated
+code for <span class="monospaced">TweetSearchResults</span> is simply <span class="monospaced">public List&lt;Tweets&gt; tweets</span>.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_enums_2">Enums</h4>
-<div class="paragraph"><p>Thrift enums map to Java <tt>enum</tt> types. You can obtain the numeric value of an
-enum by using the <tt>getValue</tt> method (via the interface <tt>TEnum</tt>). In addition,
-the compiler generates a <tt>findByValue</tt> method to obtain the enum corresponding
-to a numeric value. This is more robust than using the <tt>ordinal</tt> feature of Java
+<div class="paragraph"><p>Thrift enums map to Java <span class="monospaced">enum</span> types. You can obtain the numeric value of an
+enum by using the <span class="monospaced">getValue</span> method (via the interface <span class="monospaced">TEnum</span>). In addition,
+the compiler generates a <span class="monospaced">findByValue</span> method to obtain the enum corresponding
+to a numeric value. This is more robust than using the <span class="monospaced">ordinal</span> feature of Java
 enums.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_constants_2">Constants</h4>
-<div class="paragraph"><p>Thrift puts all defined constants in a public class named <tt>Constants</tt> as <tt>public
-static final</tt> members. Constants of any of the primitive types are supported.</p></div>
+<div class="paragraph"><p>Thrift puts all defined constants in a public class named <span class="monospaced">Constants</span> as <span class="monospaced">public
+static final</span> members. Constants of any of the primitive types are supported.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2071,12 +2338,12 @@ F11dXdTUL2BO/Xx8/goEUcSxbYSJ2EGS5IlzgnSC/r4PuXzmOEuXLmXlypXU19cTCoUIh8OEQqEr
 7k5/7vOBdDpNMpkkkUiQSCTo7u7m6NGjnD59mv7+fqLRKIZhoCgKoVCI2tpampqaWLRoES0tLfh8
 Pvx+P8FgkGAw+OWfD7gj94RG13U0TSOdTpNOp8lMbmQ0TcvbArrrK1mW8Xg8eL3e7BLB5/N9dSc0
 uSP3jMwwjKy4G3AXwB0ugAsx5YzMndW//DOy3OFMjGwrxrKs7NX9LBfAneFFUcxec6rU5zqpvCqA
-qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC" />
+qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC">
 </td>
 <td class="content">
 <div class="title">Contain your Constants</div>
 <div class="paragraph"><p>If you have multiple Thrift files (in the same namespace) containing const
-definitions, the Thrift compiler will overwrite the <tt>Constants.java</tt> file with
+definitions, the Thrift compiler will overwrite the <span class="monospaced">Constants.java</span> file with
 the definitions found in the file processed last. You <em>must</em> either define all
 your constants in a single file, or invoke the compiler on a single file that
 includes all the other files.</p></div>
@@ -2092,30 +2359,30 @@ includes all the other files.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-all constants go into a single <tt>.cpp/.h</tt> pair
+all constants go into a single <span class="monospaced">.cpp/.h</span> pair
 </p>
 </li>
 <li>
 <p>
-all type definitions (enums and structs) go into another <tt>.cpp/.h</tt> pair
+all type definitions (enums and structs) go into another <span class="monospaced">.cpp/.h</span> pair
 </p>
 </li>
 <li>
 <p>
-each service gets its own <tt>.cpp/.h</tt> pair
+each service gets its own <span class="monospaced">.cpp/.h</span> pair
 </p>
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content">
-<pre><tt>$ tree gen-cpp
+<div class="content monospaced">
+<pre>$ tree gen-cpp
 |-- example_constants.cpp
 |-- example_constants.h
 |-- example_types.cpp
 |-- example_types.h
 |-- Twitter.cpp
 |-- Twitter.h
-`-- Twitter_server.skeleton.cpp</tt></pre>
+`-- Twitter_server.skeleton.cpp</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2124,52 +2391,52 @@ each service gets its own <tt>.cpp/.h</tt> pair
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>bool</tt>: <tt>bool</tt>
+<span class="monospaced">bool</span>: <span class="monospaced">bool</span>
 </p>
 </li>
 <li>
 <p>
-<tt>byte</tt>: <tt>int8_t</tt>
+<span class="monospaced">byte</span>: <span class="monospaced">int8_t</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i16</tt>: <tt>int16_t</tt>
+<span class="monospaced">i16</span>: <span class="monospaced">int16_t</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i32</tt>: <tt>int32_t</tt>
+<span class="monospaced">i32</span>: <span class="monospaced">int32_t</span>
 </p>
 </li>
 <li>
 <p>
-<tt>i64</tt>: <tt>int64_t</tt>
+<span class="monospaced">i64</span>: <span class="monospaced">int64_t</span>
 </p>
 </li>
 <li>
 <p>
-<tt>double</tt>: <tt>double</tt>
+<span class="monospaced">double</span>: <span class="monospaced">double</span>
 </p>
 </li>
 <li>
 <p>
-<tt>string</tt>: <tt>std::string</tt>
+<span class="monospaced">string</span>: <span class="monospaced">std::string</span>
 </p>
 </li>
 <li>
 <p>
-<tt>list&lt;t1&gt;</tt>: <tt>std::vector&lt;t1&gt;</tt>
+<span class="monospaced">list&lt;t1&gt;</span>: <span class="monospaced">std::vector&lt;t1&gt;</span>
 </p>
 </li>
 <li>
 <p>
-<tt>set&lt;t1&gt;</tt>: <tt>std::set&lt;t1&gt;</tt>
+<span class="monospaced">set&lt;t1&gt;</span>: <span class="monospaced">std::set&lt;t1&gt;</span>
 </p>
 </li>
 <li>
 <p>
-<tt>map&lt;t1,t2&gt;</tt>: <tt>std::maP&lt;T1, T2&gt;</tt>
+<span class="monospaced">map&lt;t1,t2&gt;</span>: <span class="monospaced">std::map&lt;T1, T2&gt;</span>
 </p>
 </li>
 </ul></div>
@@ -2260,7 +2527,7 @@ Changing a default value is generally OK, as long as you remember that default
 </div>
 </div>
 </div>
-<div id="footnotes"><hr /></div>
+<div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
 Last updated 2011-04-13 09:07:57 PDT
