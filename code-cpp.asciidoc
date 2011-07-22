@@ -15,3 +15,19 @@ $ tree gen-cpp
 |-- Twitter.h
 `-- Twitter_server.skeleton.cpp
 -----------------------------------------------------------------------------
+
+Types
+^^^^^
+
+Thrift maps the various base and container types to C++ types as follows:
+
+* +bool+: +bool+
+* +byte+: +int8_t+
+* +i16+: +int16_t+
+* +i32+: +int32_t+
+* +i64+: +int64_t+
+* +double+: +double+
+* +string+: +std::string+
+* +list<t1>+: +std::vector<t1>+
+* +set<t1>+: +std::set<t1>+
+* +map<t1,t2>+: +std::map<T1, T2>+
