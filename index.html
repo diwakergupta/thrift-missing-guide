@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.5">
+<meta name="generator" content="AsciiDoc 8.6.6">
 <title>Thrift: The Missing Guide</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -602,6 +602,72 @@ div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock
 div.verseblock { border-left-width: 0; margin-left: 3em; }
 div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
 div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+/*
+  pygmentize filter
+*/
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f4f4f4; }
+.highlight .c { color: #008800; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #AA22FF; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #008800 } /* Comment.Preproc */
+.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #008800; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #AA22FF; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #AA22FF; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #AA22FF; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
+.highlight .kr { color: #AA22FF; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #00BB00; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BB4444 } /* Literal.String */
+.highlight .na { color: #BB4444 } /* Name.Attribute */
+.highlight .nb { color: #AA22FF } /* Name.Builtin */
+.highlight .nc { color: #0000FF } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00A000 } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #B8860B } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BB4444 } /* Literal.String.Backtick */
+.highlight .sc { color: #BB4444 } /* Literal.String.Char */
+.highlight .sd { color: #BB4444; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BB4444 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BB4444 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BB4444 } /* Literal.String.Single */
+.highlight .ss { color: #B8860B } /* Literal.String.Symbol */
+.highlight .bp { color: #AA22FF } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #B8860B } /* Name.Variable.Class */
+.highlight .vg { color: #B8860B } /* Name.Variable.Global */
+.highlight .vi { color: #B8860B } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
 @media screen {
   body {
     max-width: 50em; /* approximately 80 characters wide */
@@ -709,7 +775,7 @@ toc: function (toclevels) {
   var i;
   for (i = 0; i < toc.childNodes.length; i++) {
     var entry = toc.childNodes[i];
-    if (entry.nodeName == 'DIV'
+    if (entry.nodeName == 'div'
      && entry.getAttribute("class")
      && entry.getAttribute("class").match(/^toclevel/))
       tocEntriesToRemove.push(entry);
@@ -755,7 +821,7 @@ footnotes: function () {
   var entriesToRemove = [];
   for (i = 0; i < noteholder.childNodes.length; i++) {
     var entry = noteholder.childNodes[i];
-    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+    if (entry.nodeName == 'div' && entry.getAttribute("class") == "footnote")
       entriesToRemove.push(entry);
   }
   for (i = 0; i < entriesToRemove.length; i++) {
@@ -853,7 +919,7 @@ asciidoc.install(2);
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br>
 <span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
-<span id="revdate">2011-07-22</span>
+<span id="revdate">2012-01-20</span>
 <br><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -996,25 +1062,22 @@ generates fully functional client and server stubs that implement the interface.
 <h3 id="_typedefs">Typedefs</h3>
 <div class="paragraph"><p>Thrift supports C/C++ style typedefs.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> <span style="color: #008080">i32</span> MyInteger   <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="k">typedef</span> <span class="n">i32</span> <span class="n">MyInteger</span>   <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> <span style="color: #008080">Tweet</span> ReTweet   <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+<span class="k">typedef</span> <span class="n">Tweet</span> <span class="n">ReTweet</span>   <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span></tt></pre></div></div>
+AAAASUVORK5CYII="></span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1047,59 +1110,56 @@ different value, the parser will treat it like an unknown field). In the
 following example we&#8217;ve added an enum called <span class="monospaced">TweetType</span> with all the possible
 values, and a field of the same type:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">enum</span></span> TweetType <span style="color: #FF0000">{</span>
-    TWEET<span style="color: #990000">,</span>       <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="k">enum</span> <span class="n">TweetType</span> <span class="p">{</span>
+    <span class="n">TWEET</span><span class="p">,</span>       <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-    RETWEET <span style="color: #990000">=</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+    <span class="n">RETWEET</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span>
-    DM <span style="color: #990000">=</span> <span style="color: #993399">0xa</span><span style="color: #990000">,</span>    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+AAAASUVORK5CYII="></span>
+    <span class="n">DM</span> <span class="o">=</span> <span class="mh">0xa</span><span class="p">,</span>    <span class="c1">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII="></span></span>
-    REPLY
-<span style="color: #FF0000">}</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+SUVORK5CYII="></span>
+    <span class="n">REPLY</span>
+<span class="p">}</span>                <span class="c1">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
 ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC"></span></span>
+QmCC"></span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>
-    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>
-    <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
-    <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>
-    <span style="color: #993399">5</span><span style="color: #990000">:</span> optional <span style="color: #008080">TweetType</span> tweetType <span style="color: #990000">=</span> TweetType<span style="color: #990000">.</span>TWEET <span style="font-style: italic"><span style="color: #9A1900">// <img alt="5" src="data:image/png;base64,
+<span class="k">struct</span> <span class="n">Tweet</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">i32</span> <span class="n">userId</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">userName</span><span class="p">;</span>
+    <span class="mi">3</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+    <span class="mi">4</span><span class="o">:</span> <span class="n">optional</span> <span class="n">Location</span> <span class="n">loc</span><span class="p">;</span>
+    <span class="mi">5</span><span class="o">:</span> <span class="n">optional</span> <span class="n">TweetType</span> <span class="n">tweetType</span> <span class="o">=</span> <span class="n">TweetType</span><span class="p">.</span><span class="n">TWEET</span> <span class="c1">// <img alt="5" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
 FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
 A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC"></span></span>
-    <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+TkSuQmCC"></span>
+    <span class="mi">16</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">language</span> <span class="o">=</span> <span class="s">&quot;english&quot;</span>
+<span class="p">}</span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1155,18 +1215,15 @@ structs, for that matter).</p></div>
 <div class="paragraph"><p>Thrift supports shell-style, C-style multi-line as well as single-line Java/C++
 style comments.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #000080"># This</span></span> is a <span style="color: #008080">valid</span> comment<span style="color: #990000">.</span>
+<div class="content"><div class="highlight"><pre><span class="cp"># This is a valid comment.</span>
 
-<span style="font-style: italic"><span style="color: #9A1900">/*</span></span>
-<span style="font-style: italic"><span style="color: #9A1900"> * This is a multi-line comment.</span></span>
-<span style="font-style: italic"><span style="color: #9A1900"> * Just like in C.</span></span>
-<span style="font-style: italic"><span style="color: #9A1900"> */</span></span>
+<span class="cm">/*</span>
+<span class="cm"> * This is a multi-line comment.</span>
+<span class="cm"> * Just like in C.</span>
+<span class="cm"> */</span>
 
-<span style="font-style: italic"><span style="color: #9A1900">// C++/Java style single-line comments work just as well.</span></span></tt></pre></div></div>
+<span class="c1">// C++/Java style single-line comments work just as well.</span>
+</pre></div></div></div>
 </div>
 <div class="sect2">
 <h3 id="_namespaces">Namespaces</h3>
@@ -1177,25 +1234,22 @@ also be used to prevent name clashes between type definitions.</p></div>
 modules), Thrift allows you to customize the namespace behavior on a
 per-language basis:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">cpp</span> com<span style="color: #990000">.</span>example<span style="color: #990000">.</span>project  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">com</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">project</span>  <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">java</span> com<span style="color: #990000">.</span>example<span style="color: #990000">.</span>project <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+<span class="k">namespace</span> <span class="n">java</span> <span class="n">com</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">project</span> <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span></tt></pre></div></div>
+AAAASUVORK5CYII="></span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1225,28 +1279,25 @@ current directory and by searching relative to any paths specified with the <spa
 compiler flag.</p></div>
 <div class="paragraph"><p>Included objects are accessed using the name of the Thrift file as a prefix.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>include <span style="color: #FF0000">"tweet.thrift"</span>           <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="n">include</span> <span class="s">&quot;tweet.thrift&quot;</span>           <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-<span style="color: #990000">...</span>
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">TweetSearchResult</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">list&lt;tweet.Tweet&gt;</span> tweets<span style="color: #990000">;</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+<span class="p">...</span>
+<span class="k">struct</span> <span class="n">TweetSearchResult</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">tweet</span><span class="p">.</span><span class="n">Tweet</span><span class="o">&gt;</span> <span class="n">tweets</span><span class="p">;</span> <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+AAAASUVORK5CYII="></span>
+<span class="p">}</span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1272,18 +1323,15 @@ Note the <span class="monospaced">tweet</span> prefix.
 <div class="paragraph"><p>Thrift lets you define constants for use across languages. Complex types and
 structs are specified using JSON notation.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">i32</span> INT_CONST <span style="color: #990000">=</span> <span style="color: #993399">1234</span><span style="color: #990000">;</span>    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="k">const</span> <span class="n">i32</span> <span class="n">INT_CONST</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">;</span>    <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-<span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">map&lt;string,string&gt;</span> MAP_CONST <span style="color: #990000">=</span> <span style="color: #FF0000">{</span><span style="color: #FF0000">"hello"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"world"</span><span style="color: #990000">,</span> <span style="color: #FF0000">"goodnight"</span><span style="color: #990000">:</span> <span style="color: #FF0000">"moon"</span><span style="color: #FF0000">}</span></tt></pre></div></div>
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+<span class="k">const</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">MAP_CONST</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="o">:</span> <span class="s">&quot;world&quot;</span><span class="p">,</span> <span class="s">&quot;goodnight&quot;</span><span class="o">:</span> <span class="s">&quot;moon&quot;</span><span class="p">}</span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1303,56 +1351,53 @@ integer identifier, a type, a name and an optional default value.</p></div>
 <div class="paragraph"><p>Consider a simple example. Suppose you want to build a
 <a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <span class="monospaced">Tweet</span>:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>                  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Tweet</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">i32</span> <span class="n">userId</span><span class="p">;</span>                  <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>             <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">userName</span><span class="p">;</span>             <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span>
-    <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
-    <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>                <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+AAAASUVORK5CYII="></span>
+    <span class="mi">3</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+    <span class="mi">4</span><span class="o">:</span> <span class="n">optional</span> <span class="n">Location</span> <span class="n">loc</span><span class="p">;</span>                <span class="c1">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII="></span></span>
-    <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+SUVORK5CYII="></span>
+    <span class="mi">16</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">language</span> <span class="o">=</span> <span class="s">&quot;english&quot;</span> <span class="c1">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
 ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC"></span></span>
-<span style="color: #FF0000">}</span>
+QmCC"></span>
+<span class="p">}</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Location</span> <span style="color: #FF0000">{</span>                            <span style="font-style: italic"><span style="color: #9A1900">// <img alt="5" src="data:image/png;base64,
+<span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
 FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
 A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
 Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC"></span></span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> latitude<span style="color: #990000">;</span>
-    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> longitude<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+TkSuQmCC"></span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">latitude</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">longitude</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1496,50 +1541,47 @@ signatures for the methods. Optionally, a service may extend other services.</p>
 stubs (for the client) in your chosen language. Thrift ships with RPC libraries
 for most languages that you can then use to run your client and server.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #008080">service</span> Twitter <span style="color: #FF0000">{</span>
-    <span style="font-style: italic"><span style="color: #9A1900">// A method definition looks like C code. It has a return type, arguments,</span></span>
-    <span style="font-style: italic"><span style="color: #9A1900">// and optionally a list of exceptions that it may throw. Note that argument</span></span>
-    <span style="font-style: italic"><span style="color: #9A1900">// lists and exception list are specified using the exact same syntax as</span></span>
-    <span style="font-style: italic"><span style="color: #9A1900">// field lists in structs.</span></span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">ping</span></span><span style="color: #990000">(),</span>                                    <span style="font-style: italic"><span style="color: #9A1900">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span class="n">service</span> <span class="n">Twitter</span> <span class="o">{</span>
+    <span class="c1">// A method definition looks like C code. It has a return type, arguments,</span>
+    <span class="c1">// and optionally a list of exceptions that it may throw. Note that argument</span>
+    <span class="c1">// lists and exception list are specified using the exact same syntax as</span>
+    <span class="c1">// field lists in structs.</span>
+    <span class="kt">void</span> <span class="nf">ping</span><span class="o">(),</span>                                    <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
-ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span></span>
-    <span style="color: #008080">bool</span> <span style="font-weight: bold"><span style="color: #000000">postTweet</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">Tweet</span> tweet<span style="color: #990000">);</span>                  <span style="font-style: italic"><span style="color: #9A1900">// <img alt="2" src="data:image/png;base64,
+ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
+    <span class="n">bool</span> <span class="nf">postTweet</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="o">);</span>                  <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
 izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
-AAAASUVORK5CYII="></span></span>
-    <span style="color: #008080">TweetSearchResult</span> <span style="font-weight: bold"><span style="color: #000000">searchTweets</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">string</span> query<span style="color: #990000">);</span> <span style="font-style: italic"><span style="color: #9A1900">// <img alt="3" src="data:image/png;base64,
+AAAASUVORK5CYII="></span>
+    <span class="n">TweetSearchResult</span> <span class="nf">searchTweets</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">string</span> <span class="n">query</span><span class="o">);</span> <span class="c1">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
 Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
-SUVORK5CYII="></span></span>
+SUVORK5CYII="></span>
 
-    <span style="font-style: italic"><span style="color: #9A1900">// The 'oneway' modifier indicates that the client only makes a request and</span></span>
-    <span style="font-style: italic"><span style="color: #9A1900">// does not wait for any response at all. Oneway methods MUST be void.</span></span>
-    oneway <span style="color: #008080">void</span> <span style="font-weight: bold"><span style="color: #000000">zip</span></span><span style="color: #990000">()</span>                               <span style="font-style: italic"><span style="color: #9A1900">// <img alt="4" src="data:image/png;base64,
+    <span class="c1">// The &#39;oneway&#39; modifier indicates that the client only makes a request and</span>
+    <span class="c1">// does not wait for any response at all. Oneway methods MUST be void.</span>
+    <span class="n">oneway</span> <span class="kt">void</span> <span class="nf">zip</span><span class="o">()</span>                               <span class="c1">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
 ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 6rzDAAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jpc3R5
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
-QmCC"></span></span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+QmCC"></span>
+<span class="o">}</span>
+</pre></div></div></div>
 <div class="colist arabic"><table>
 <tr><td><img alt="1" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1661,150 +1703,198 @@ will hopefully help you understand how to use it effectively.</p></div>
 <div class="imageblock ditaa">
 <div class="content">
 <img alt="thrift__1.png" src="data:image/png;base64,
-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
-RU5ErkJggg==">
+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
+gg==">
 </div>
 <div class="title">Figure 1. The Thrift Network Stack</div>
 </div>
@@ -1892,50 +1982,47 @@ implementation governs the encoding scheme and is responsible for
 plain text, compact binary etc.</p></div>
 <div class="paragraph"><p>Here is the <span class="monospaced">Protocol</span> interface:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #000000">writeMessageBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> seq<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeMessageEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeStructBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeStructEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeFieldBegin</span></span><span style="color: #990000">(</span>name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> id<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeFieldEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeFieldStop</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeMapBegin</span></span><span style="color: #990000">(</span>ktype<span style="color: #990000">,</span> vtype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeMapEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeListBegin</span></span><span style="color: #990000">(</span>etype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeListEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeSetBegin</span></span><span style="color: #990000">(</span>etype<span style="color: #990000">,</span> size<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeSetEnd</span></span><span style="color: #990000">()</span>
-<span style="font-weight: bold"><span style="color: #000000">writeBool</span></span><span style="color: #990000">(</span><span style="color: #009900">bool</span><span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeByte</span></span><span style="color: #990000">(</span>byte<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeI16</span></span><span style="color: #990000">(</span>i16<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeI32</span></span><span style="color: #990000">(</span>i32<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeI64</span></span><span style="color: #990000">(</span>i64<span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeDouble</span></span><span style="color: #990000">(</span><span style="color: #009900">double</span><span style="color: #990000">)</span>
-<span style="font-weight: bold"><span style="color: #000000">writeString</span></span><span style="color: #990000">(</span>string<span style="color: #990000">)</span>
+<div class="content"><div class="highlight"><pre><span class="n">writeMessageBegin</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+<span class="n">writeMessageEnd</span><span class="p">()</span>
+<span class="n">writeStructBegin</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">writeStructEnd</span><span class="p">()</span>
+<span class="n">writeFieldBegin</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span>
+<span class="n">writeFieldEnd</span><span class="p">()</span>
+<span class="n">writeFieldStop</span><span class="p">()</span>
+<span class="n">writeMapBegin</span><span class="p">(</span><span class="n">ktype</span><span class="p">,</span> <span class="n">vtype</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">writeMapEnd</span><span class="p">()</span>
+<span class="n">writeListBegin</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">writeListEnd</span><span class="p">()</span>
+<span class="n">writeSetBegin</span><span class="p">(</span><span class="n">etype</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">writeSetEnd</span><span class="p">()</span>
+<span class="n">writeBool</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+<span class="n">writeByte</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
+<span class="n">writeI16</span><span class="p">(</span><span class="n">i16</span><span class="p">)</span>
+<span class="n">writeI32</span><span class="p">(</span><span class="n">i32</span><span class="p">)</span>
+<span class="n">writeI64</span><span class="p">(</span><span class="n">i64</span><span class="p">)</span>
+<span class="n">writeDouble</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span>
+<span class="n">writeString</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 
-name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> seq <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readMessageBegin</span></span><span style="color: #990000">()</span>
-                  <span style="font-weight: bold"><span style="color: #000000">readMessageEnd</span></span><span style="color: #990000">()</span>
-name <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readStructBegin</span></span><span style="color: #990000">()</span>
-       <span style="font-weight: bold"><span style="color: #000000">readStructEnd</span></span><span style="color: #990000">()</span>
-name<span style="color: #990000">,</span> type<span style="color: #990000">,</span> id <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readFieldBegin</span></span><span style="color: #990000">()</span>
-                 <span style="font-weight: bold"><span style="color: #000000">readFieldEnd</span></span><span style="color: #990000">()</span>
-k<span style="color: #990000">,</span> v<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readMapBegin</span></span><span style="color: #990000">()</span>
-             <span style="font-weight: bold"><span style="color: #000000">readMapEnd</span></span><span style="color: #990000">()</span>
-etype<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readListBegin</span></span><span style="color: #990000">()</span>
-              <span style="font-weight: bold"><span style="color: #000000">readListEnd</span></span><span style="color: #990000">()</span>
-etype<span style="color: #990000">,</span> size <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readSetBegin</span></span><span style="color: #990000">()</span>
-              <span style="font-weight: bold"><span style="color: #000000">readSetEnd</span></span><span style="color: #990000">()</span>
-<span style="color: #009900">bool</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readBool</span></span><span style="color: #990000">()</span>
-byte <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readByte</span></span><span style="color: #990000">()</span>
-i16 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI16</span></span><span style="color: #990000">()</span>
-i32 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI32</span></span><span style="color: #990000">()</span>
-i64 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readI64</span></span><span style="color: #990000">()</span>
-<span style="color: #009900">double</span> <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readDouble</span></span><span style="color: #990000">()</span>
-string <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">readString</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">seq</span> <span class="o">=</span> <span class="n">readMessageBegin</span><span class="p">()</span>
+                  <span class="n">readMessageEnd</span><span class="p">()</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">readStructBegin</span><span class="p">()</span>
+       <span class="n">readStructEnd</span><span class="p">()</span>
+<span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">id</span> <span class="o">=</span> <span class="n">readFieldBegin</span><span class="p">()</span>
+                 <span class="n">readFieldEnd</span><span class="p">()</span>
+<span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">readMapBegin</span><span class="p">()</span>
+             <span class="n">readMapEnd</span><span class="p">()</span>
+<span class="n">etype</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">readListBegin</span><span class="p">()</span>
+              <span class="n">readListEnd</span><span class="p">()</span>
+<span class="n">etype</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">readSetBegin</span><span class="p">()</span>
+              <span class="n">readSetEnd</span><span class="p">()</span>
+<span class="kt">bool</span> <span class="o">=</span> <span class="n">readBool</span><span class="p">()</span>
+<span class="n">byte</span> <span class="o">=</span> <span class="n">readByte</span><span class="p">()</span>
+<span class="n">i16</span> <span class="o">=</span> <span class="n">readI16</span><span class="p">()</span>
+<span class="n">i32</span> <span class="o">=</span> <span class="n">readI32</span><span class="p">()</span>
+<span class="n">i64</span> <span class="o">=</span> <span class="n">readI64</span><span class="p">()</span>
+<span class="kt">double</span> <span class="o">=</span> <span class="n">readDouble</span><span class="p">()</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">readString</span><span class="p">()</span>
+</pre></div></div></div>
 <div class="paragraph"><p>Thrift Protocols are stream oriented by design. There is no need for any
 explicit framing. For instance, it is not necessary to know the length of a
 string or the number of items in a list before we start serializing them.</p></div>
@@ -1967,13 +2054,10 @@ json:
 to output streams. The input and output streams are represented by Protocol
 objects. The Processor interface is extremely simple:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">interface</span></span> <span style="color: #008080">TProcessor</span> <span style="color: #FF0000">{</span>
-    <span style="color: #008080">bool</span> <span style="font-weight: bold"><span style="color: #000000">process</span></span><span style="color: #990000">(</span><span style="color: #008080">TProtocol</span> in<span style="color: #990000">,</span> <span style="color: #008080">TProtocol</span> out<span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">throws</span></span> TException
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="content"><div class="highlight"><pre><span class="kd">interface</span> <span class="nc">TProcessor</span> <span class="o">{</span>
+    <span class="n">bool</span> <span class="nf">process</span><span class="o">(</span><span class="n">TProtocol</span> <span class="n">in</span><span class="o">,</span> <span class="n">TProtocol</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">TException</span>
+<span class="o">}</span>
+</pre></div></div></div>
 <div class="paragraph"><p>Service-specific processor implementations are generated by the compiler. The
 Processor essentially reads data from the wire (using the input protocol),
 delegates processing to the handler (implemented by the user) and writes the
@@ -2008,48 +2092,45 @@ Wait for incoming connections and hand them off to the processor
 otherwise, the sections below will assume the following Thrift specification:</p></div>
 <div class="listingblock">
 <div class="title">Example IDL</div>
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">cpp</span> thrift<span style="color: #990000">.</span>example
-<span style="font-weight: bold"><span style="color: #0000FF">namespace</span></span> <span style="color: #008080">java</span> thrift<span style="color: #990000">.</span>example
+<div class="content"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">thrift</span><span class="p">.</span><span class="n">example</span>
+<span class="k">namespace</span> <span class="n">java</span> <span class="n">thrift</span><span class="p">.</span><span class="n">example</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">enum</span></span> TweetType <span style="color: #FF0000">{</span>
-    TWEET<span style="color: #990000">,</span>
-    RETWEET <span style="color: #990000">=</span> <span style="color: #993399">2</span><span style="color: #990000">,</span>
-    DM <span style="color: #990000">=</span> <span style="color: #993399">0xa</span><span style="color: #990000">,</span>
-    REPLY
-<span style="color: #FF0000">}</span>
+<span class="k">enum</span> <span class="n">TweetType</span> <span class="p">{</span>
+    <span class="n">TWEET</span><span class="p">,</span>
+    <span class="n">RETWEET</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">DM</span> <span class="o">=</span> <span class="mh">0xa</span><span class="p">,</span>
+    <span class="n">REPLY</span>
+<span class="p">}</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Location</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> latitude<span style="color: #990000">;</span>
-    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">double</span> longitude<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span>
+<span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">latitude</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">longitude</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">Tweet</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> required <span style="color: #008080">i32</span> userId<span style="color: #990000">;</span>
-    <span style="color: #993399">2</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> userName<span style="color: #990000">;</span>
-    <span style="color: #993399">3</span><span style="color: #990000">:</span> required <span style="color: #008080">string</span> text<span style="color: #990000">;</span>
-    <span style="color: #993399">4</span><span style="color: #990000">:</span> optional <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>
-    <span style="color: #993399">5</span><span style="color: #990000">:</span> optional <span style="color: #008080">TweetType</span> tweetType <span style="color: #990000">=</span> TweetType<span style="color: #990000">.</span>TWEET<span style="color: #990000">;</span>
-    <span style="color: #993399">16</span><span style="color: #990000">:</span> optional <span style="color: #008080">string</span> language <span style="color: #990000">=</span> <span style="color: #FF0000">"english"</span><span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span>
+<span class="k">struct</span> <span class="n">Tweet</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">i32</span> <span class="n">userId</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">userName</span><span class="p">;</span>
+    <span class="mi">3</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+    <span class="mi">4</span><span class="o">:</span> <span class="n">optional</span> <span class="n">Location</span> <span class="n">loc</span><span class="p">;</span>
+    <span class="mi">5</span><span class="o">:</span> <span class="n">optional</span> <span class="n">TweetType</span> <span class="n">tweetType</span> <span class="o">=</span> <span class="n">TweetType</span><span class="p">.</span><span class="n">TWEET</span><span class="p">;</span>
+    <span class="mi">16</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">language</span> <span class="o">=</span> <span class="s">&quot;english&quot;</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">typedef</span></span> list<span style="color: #990000">&lt;</span>Tweet<span style="color: #990000">&gt;</span> TweetList
+<span class="k">typedef</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">Tweet</span><span class="o">&gt;</span> <span class="n">TweetList</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">struct</span></span> <span style="color: #008080">TweetSearchResult</span> <span style="color: #FF0000">{</span>
-    <span style="color: #993399">1</span><span style="color: #990000">:</span> <span style="color: #008080">TweetList</span> tweets<span style="color: #990000">;</span>
-<span style="color: #FF0000">}</span>
+<span class="k">struct</span> <span class="n">TweetSearchResult</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">TweetList</span> <span class="n">tweets</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="font-weight: bold"><span style="color: #0000FF">const</span></span> <span style="color: #008080">i32</span> MAX_RESULTS <span style="color: #990000">=</span> <span style="color: #993399">100</span><span style="color: #990000">;</span>
+<span class="k">const</span> <span class="n">i32</span> <span class="n">MAX_RESULTS</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
 
-<span style="color: #008080">service</span> Twitter <span style="color: #FF0000">{</span>
-    <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">ping</span></span><span style="color: #990000">(),</span>
-    <span style="color: #009900">bool</span> <span style="font-weight: bold"><span style="color: #000000">postTweet</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">Tweet</span> tweet<span style="color: #990000">);</span>
-    <span style="color: #008080">TweetSearchResult</span> <span style="font-weight: bold"><span style="color: #000000">searchTweets</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">:</span><span style="color: #008080">string</span> query<span style="color: #990000">);</span>
-    oneway <span style="color: #008080">void</span> <span style="font-weight: bold"><span style="color: #000000">zip</span></span><span style="color: #990000">()</span>
-<span style="color: #FF0000">}</span></tt></pre></div></div>
+<span class="n">service</span> <span class="n">Twitter</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">ping</span><span class="p">(),</span>
+    <span class="kt">bool</span> <span class="n">postTweet</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="p">);</span>
+    <span class="n">TweetSearchResult</span> <span class="n">searchTweets</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">string</span> <span class="n">query</span><span class="p">);</span>
+    <span class="n">oneway</span> <span class="kt">void</span> <span class="n">zip</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div></div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">How are nested structs initialized?</div>
@@ -2063,18 +2144,15 @@ explicitly set by the user.</p></div>
 concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
 example above:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.4
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>  <span style="color: #990000">...</span>
-  <span style="color: #008080">int32_t</span> userId<span style="color: #990000">;</span>
-  std<span style="color: #990000">::</span><span style="color: #008080">string</span> userName<span style="color: #990000">;</span>
-  std<span style="color: #990000">::</span><span style="color: #008080">string</span> text<span style="color: #990000">;</span>
-  <span style="color: #008080">Location</span> loc<span style="color: #990000">;</span>
-  TweetType<span style="color: #990000">::</span><span style="color: #008080">type</span> tweetType<span style="color: #990000">;</span>
-  std<span style="color: #990000">::</span><span style="color: #008080">string</span> language<span style="color: #990000">;</span>
-  <span style="color: #990000">...</span></tt></pre></div></div>
+<div class="content"><div class="highlight"><pre>  <span class="p">...</span>
+  <span class="n">int32_t</span> <span class="n">userId</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">userName</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+  <span class="n">Location</span> <span class="n">loc</span><span class="p">;</span>
+  <span class="n">TweetType</span><span class="o">::</span><span class="n">type</span> <span class="n">tweetType</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">language</span><span class="p">;</span>
+  <span class="p">...</span>
+</pre></div></div></div>
 <div class="paragraph"><p>As you can see, the nested <span class="monospaced">Location</span> structure is <strong>fully allocated inline</strong>.
 Because <span class="monospaced">Location</span> is optional, the code uses the internal <em>__isset</em> flags to
 determine if the field has actually been "set" by the user.</p></div>
@@ -2213,6 +2291,11 @@ compile under Java.</p></div>
 <li>
 <p>
 <span class="monospaced">bool</span>: <span class="monospaced">boolean</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">binary</span>: <span class="monospaced">byte[]</span>
 </p>
 </li>
 <li>
@@ -2396,6 +2479,11 @@ each service gets its own <span class="monospaced">.cpp/.h</span> pair
 </li>
 <li>
 <p>
+<span class="monospaced">binary</span>: <span class="monospaced">std::string</span>
+</p>
+</li>
+<li>
+<p>
 <span class="monospaced">byte</span>: <span class="monospaced">int8_t</span>
 </p>
 </li>
@@ -2530,7 +2618,7 @@ Changing a default value is generally OK, as long as you remember that default
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2011-04-13 09:07:57 PDT
+Last updated 2011-09-26 13:35:30 PDT
 </div>
 </div>
 </body>
