@@ -34,6 +34,7 @@ Types
 Thrift maps the various base and container types to Java types as follows:
 
 * +bool+: +boolean+
+* +binary+: +byte[]+
 * +byte+: +byte+
 * +i16+: +short+
 * +i32+: +int+

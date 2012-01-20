@@ -6,6 +6,7 @@ default:
 		-a data-uri \
 		-a docinfo \
 		-a icons \
+		-a pygments \
 		-a iconsdir=/usr/local/Cellar/asciidoc/8.6.6/etc/asciidoc/images/icons \
 		-o index.html \
 		thrift.asciidoc
@@ -16,8 +17,10 @@ pdf:
 		-a data-uri \
 		-a docinfo \
 		-a icons \
+		-a pygments \
 		-a iconsdir=/usr/local/Cellar/asciidoc/8.6.6/etc/asciidoc/images/icons \
 		-a pygments \
+		--no-xmllint \
 		thrift.asciidoc
 
 all: default pdf

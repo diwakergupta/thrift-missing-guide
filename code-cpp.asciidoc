@@ -22,6 +22,7 @@ Types
 Thrift maps the various base and container types to C++ types as follows:
 
 * +bool+: +bool+
+* +binary+: +std::string+
 * +byte+: +int8_t+
 * +i16+: +int16_t+
 * +i32+: +int32_t+
