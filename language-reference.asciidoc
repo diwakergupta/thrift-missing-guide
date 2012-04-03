@@ -287,6 +287,6 @@ service using the +extends+ keyword.
 
 [IMPORTANT]
 .Nested Types
-As of this writing, Thrift does NOT nested type _definitions_. That is, you may
-not define a struct (or an enum) within a struct; you may of course _use_
-structs/enums within other structs.
+As of this writing, Thrift does NOT support nested type _definitions_. That is, 
+you may not define a struct (or an enum) within a struct; you may of course 
+_use_ structs/enums within other structs.
