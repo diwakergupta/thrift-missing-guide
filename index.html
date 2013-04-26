@@ -1353,7 +1353,19 @@ integer identifier, a type, a name and an optional default value.</p></div>
 <div class="paragraph"><p>Consider a simple example. Suppose you want to build a
 <a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <span class="monospaced">Tweet</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Tweet</span> <span class="p">{</span>
+<div class="content"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
+FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
+A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
+Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
+c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
+ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
+TkSuQmCC"></span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">latitude</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">longitude</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Tweet</span> <span class="p">{</span>
     <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">i32</span> <span class="n">userId</span><span class="p">;</span>                  <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1386,18 +1398,6 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
 QmCC"></span>
-<span class="p">}</span>
-
-<span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
-FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
-A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
-Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
-c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
-ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
-TkSuQmCC"></span>
-    <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">latitude</span><span class="p">;</span>
-    <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="kt">double</span> <span class="n">longitude</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="colist arabic"><table>
