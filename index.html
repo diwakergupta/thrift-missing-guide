@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.6">
+<meta name="generator" content="AsciiDoc 8.6.8">
 <title>Thrift: The Missing Guide</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -602,6 +602,7 @@ div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock
 div.verseblock { border-left-width: 0; margin-left: 3em; }
 div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
 div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+
 /*
   pygmentize filter
 */
@@ -667,6 +668,7 @@ div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
 .highlight .vg { color: #B8860B } /* Name.Variable.Global */
 .highlight .vi { color: #B8860B } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
 
 @media screen {
   body {
@@ -746,7 +748,7 @@ toc: function (toclevels) {
 
   function tocEntries(el, toclevels) {
     var result = new Array;
-    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
     // Function that scans the DOM tree for header elements (the DOM2
     // nodeIterator API would be a better technique but not supported by all
     // browsers).
@@ -775,7 +777,7 @@ toc: function (toclevels) {
   var i;
   for (i = 0; i < toc.childNodes.length; i++) {
     var entry = toc.childNodes[i];
-    if (entry.nodeName == 'div'
+    if (entry.nodeName.toLowerCase() == 'div'
      && entry.getAttribute("class")
      && entry.getAttribute("class").match(/^toclevel/))
       tocEntriesToRemove.push(entry);
@@ -821,7 +823,7 @@ footnotes: function () {
   var entriesToRemove = [];
   for (i = 0; i < noteholder.childNodes.length; i++) {
     var entry = noteholder.childNodes[i];
-    if (entry.nodeName == 'div' && entry.getAttribute("class") == "footnote")
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
       entriesToRemove.push(entry);
   }
   for (i = 0; i < entriesToRemove.length; i++) {
@@ -919,7 +921,7 @@ asciidoc.install(2);
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br>
 <span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
-<span id="revdate">2012-01-20</span>
+<span id="revdate">2013-04-25</span>
 <br><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -1682,9 +1684,9 @@ JpL5tYCZpEyw2f/nWt1ag2UtM0x3Mq1iAp1j+bH0M7KFCGWDnfmbd8AMnuxfUzL/C0rp/wFnFd4n
 EQn3XQAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
-<div class="title">Nested Types</div>As of this writing, Thrift does NOT nested type <em>definitions</em>. That is, you may
-not define a struct (or an enum) within a struct; you may of course <em>use</em>
-structs/enums within other structs.</td>
+<div class="title">Nested Types</div>As of this writing, Thrift does NOT support nested type <em>definitions</em>. That is,
+you may not define a struct (or an enum) within a struct; you may of course
+<em>use</em> structs/enums within other structs.</td>
 </tr></table>
 </div>
 </div>
