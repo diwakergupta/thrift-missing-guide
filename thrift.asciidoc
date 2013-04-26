@@ -93,3 +93,9 @@ Resources
 * http://wiki.apache.org/thrift[Thrift Wiki]
 * http://code.google.com/apis/protocolbuffers/docs/overview.html[Protocol
   Buffers]
+
+Translations
+------------
+
+* http://science.webhostinggeeks.com/thrift-uputstvo-koje-nedostaje[Serbo-Croatian]
+  by Anja Skarba of http://webhostinggeeks.com/
