@@ -197,17 +197,17 @@ http://twitter.com[Twitter]-like service. Here is how may define a +Tweet+:
 
 [source,c]
 -----------------------------------------------------------------------------
+struct Location {                            // <5>
+    1: required double latitude;
+    2: required double longitude;
+}
+
 struct Tweet {
     1: required i32 userId;                  // <1>
     2: required string userName;             // <2>
     3: required string text;
     4: optional Location loc;                // <3>
     16: optional string language = "english" // <4>
-}
-
-struct Location {                            // <5>
-    1: required double latitude;
-    2: required double longitude;
 }
 -----------------------------------------------------------------------------
 <1> Every field *must* have a unique, positive integer identifier
