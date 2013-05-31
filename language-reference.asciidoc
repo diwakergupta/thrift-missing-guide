@@ -238,8 +238,8 @@ change the field to an optional field -- old readers will consider messages
 without this field to be incomplete and may reject or drop them unintentionally.
 You should consider writing application-specific custom validation routines for
 your buffers instead. Some have come the conclusion that using required does
-more harm than good; they prefer to use only optional and repeated. However,
-this view is not universal.
+more harm than good; they prefer to use only optional. However, this view is not
+universal.
 
 Defining Services
 ~~~~~~~~~~~~~~~~~
