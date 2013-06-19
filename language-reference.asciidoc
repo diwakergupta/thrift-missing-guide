@@ -263,13 +263,13 @@ service Twitter {
     // and optionally a list of exceptions that it may throw. Note that argument
     // lists and exception list are specified using the exact same syntax as
     // field lists in structs.
-    void ping(),                                    // <1>
-    bool postTweet(1:Tweet tweet);                  // <2>
-    TweetSearchResult searchTweets(1:string query); // <3>
+    void ping(),                                                             // <1>
+    bool postTweet(1:Tweet tweet) throws (1:TwitterUnavailable unavailable), // <2>
+    TweetSearchResult searchTweets(1:string query);                          // <3>
 
     // The 'oneway' modifier indicates that the client only makes a request and
     // does not wait for any response at all. Oneway methods MUST be void.
-    oneway void zip()                               // <4>
+    oneway void zip()                                                        // <4>
 }
 -----------------------------------------------------------------------------
 <1> Confusingly, method definitions can be terminated using comma or semi-colon
