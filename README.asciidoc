@@ -5,8 +5,8 @@ Diwaker Gupta <me@diwakergupta.info>
 This project is an attempt to plug the gap in http://thrift.apache.org[Thrift]
 documentation. The guide can be found at:
 
-http://diwakergupta.github.com/thrift-missing-guide
+http://diwakergupta.github.io/thrift-missing-guide
 
 A PDF version can be found at:
 
-http://diwakergupta.github.com/thrift-missing-guide/thrift.pdf
+http://diwakergupta.github.io/thrift-missing-guide/thrift.pdf
