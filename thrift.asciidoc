@@ -25,7 +25,7 @@ A link:thrift.pdf[PDF version] is also available.
 
 .Copyright
 
-Copyright (C) 2011 Diwaker Gupta
+Copyright (C) 2013 Diwaker Gupta
 
 This work is licensed under the
 http://creativecommons.org/licenses/by-nc/3.0/[Creative Commons
@@ -88,7 +88,7 @@ include::best-practices.asciidoc[]
 Resources
 ---------
 
-* http://thrift.apache.org/static/thrift-20070401.pdf[Thrift whitepaper]
+* http://thrift.apache.org/static/files/thrift-20070401.pdf[Thrift whitepaper]
 * http://wiki.apache.org/thrift/Tutorial[Thrift Tutorial]
 * http://wiki.apache.org/thrift[Thrift Wiki]
 * http://code.google.com/apis/protocolbuffers/docs/overview.html[Protocol
