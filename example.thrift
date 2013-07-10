@@ -28,11 +28,15 @@ struct TweetSearchResult {
     1: TweetList tweets;
 }
 
+exception TwitterUnavailable {
+    1: string message;
+}
+
 const i32 MAX_RESULTS = 100;
 
 service Twitter {
     void ping(),
-    bool postTweet(1:Tweet tweet);
+    bool postTweet(1:Tweet tweet) throws (1:TwitterUnavailable unavailable),
     TweetSearchResult searchTweets(1:string query);
     oneway void zip()
 }
