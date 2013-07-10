@@ -1548,14 +1548,14 @@ for most languages that you can then use to run your client and server.</p></div
     <span class="c1">// and optionally a list of exceptions that it may throw. Note that argument</span>
     <span class="c1">// lists and exception list are specified using the exact same syntax as</span>
     <span class="c1">// field lists in structs.</span>
-    <span class="kt">void</span> <span class="nf">ping</span><span class="o">(),</span>                                    <span class="c1">// <img alt="1" src="data:image/png;base64,
+    <span class="kt">void</span> <span class="nf">ping</span><span class="o">(),</span>                                                             <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></span>
-    <span class="n">bool</span> <span class="nf">postTweet</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="o">);</span>                  <span class="c1">// <img alt="2" src="data:image/png;base64,
+    <span class="n">bool</span> <span class="nf">postTweet</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="o">)</span> <span class="kd">throws</span> <span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">TwitterUnavailable</span> <span class="n">unavailable</span><span class="o">),</span> <span class="c1">// <img alt="2" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
 Y0K75u9TEUPhuGgWU4mQDvieEaSQEnsT6zKPeZY0EUNtrHMCXvYUuSUg0PsMjUSvpysUT6OOSil9
@@ -1563,7 +1563,7 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></span>
-    <span class="n">TweetSearchResult</span> <span class="nf">searchTweets</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">string</span> <span class="n">query</span><span class="o">);</span> <span class="c1">// <img alt="3" src="data:image/png;base64,
+    <span class="n">TweetSearchResult</span> <span class="nf">searchTweets</span><span class="o">(</span><span class="mi">1</span><span class="o">:</span><span class="n">string</span> <span class="n">query</span><span class="o">);</span>                          <span class="c1">// <img alt="3" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
 7gpLDOAVorWC0ABdcBPqwZtx8Muf+DPXJpQ96Nu/LSMYl/n17oCOnplTOrpiwW3sUs4ZJmob5/wA
@@ -1574,7 +1574,7 @@ SUVORK5CYII="></span>
 
     <span class="c1">// The &#39;oneway&#39; modifier indicates that the client only makes a request and</span>
     <span class="c1">// does not wait for any response at all. Oneway methods MUST be void.</span>
-    <span class="n">oneway</span> <span class="kt">void</span> <span class="nf">zip</span><span class="o">()</span>                               <span class="c1">// <img alt="4" src="data:image/png;base64,
+    <span class="n">oneway</span> <span class="kt">void</span> <span class="nf">zip</span><span class="o">()</span>                                                        <span class="c1">// <img alt="4" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
 ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
@@ -2124,11 +2124,15 @@ otherwise, the sections below will assume the following Thrift specification:</p
     <span class="mi">1</span><span class="o">:</span> <span class="n">TweetList</span> <span class="n">tweets</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="n">exception</span> <span class="n">TwitterUnavailable</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+<span class="p">}</span>
+
 <span class="k">const</span> <span class="n">i32</span> <span class="n">MAX_RESULTS</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
 
 <span class="n">service</span> <span class="n">Twitter</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="n">ping</span><span class="p">(),</span>
-    <span class="kt">bool</span> <span class="n">postTweet</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">postTweet</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Tweet</span> <span class="n">tweet</span><span class="p">)</span> <span class="k">throws</span> <span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">TwitterUnavailable</span> <span class="n">unavailable</span><span class="p">),</span>
     <span class="n">TweetSearchResult</span> <span class="n">searchTweets</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">string</span> <span class="n">query</span><span class="p">);</span>
     <span class="n">oneway</span> <span class="kt">void</span> <span class="n">zip</span><span class="p">()</span>
 <span class="p">}</span>
