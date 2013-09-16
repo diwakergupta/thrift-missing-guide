@@ -13,6 +13,7 @@ Base Types
 * +i32+: A 32-bit signed integer
 * +i64+: A 64-bit signed integer
 * +double+: A 64-bit floating point number
+* +binary+: A byte array
 * +string+: Encoding agnostic text or binary string
 
 Note that Thrift does not support unsigned integers because they have no direct
