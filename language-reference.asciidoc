@@ -31,7 +31,7 @@ Java Generics style. There are three containers types available:
 * +map<t1,t2>+: A map of strictly unique keys of type +t1+ to values of type
   +t2+.
 
-Types used in containers many be any valid Thrift type (including structs and
+Types used in containers may be any valid Thrift type (including structs and
 exceptions) excluding services.
 
 Structs and Exceptions
@@ -194,7 +194,7 @@ in a Thrift IDL. A struct is composed of _fields_; each field has a unique
 integer identifier, a type, a name and an optional default value.
 
 Consider a simple example. Suppose you want to build a
-http://twitter.com[Twitter]-like service. Here is how may define a +Tweet+:
+http://twitter.com[Twitter]-like service. Here is how you might define a +Tweet+:
 
 [source,c]
 -----------------------------------------------------------------------------
