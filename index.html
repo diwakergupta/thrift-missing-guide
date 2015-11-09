@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>Thrift: The Missing Guide</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -603,19 +603,16 @@ div.verseblock { border-left-width: 0; margin-left: 3em; }
 div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
 div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
 
-/*
-  pygmentize filter
-*/
 .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f4f4f4; }
-.highlight .c { color: #008800; font-style: italic } /* Comment */
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #AA22FF; font-weight: bold } /* Keyword */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #008800 } /* Comment.Preproc */
-.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #008800; font-weight: bold } /* Comment.Special */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .gr { color: #FF0000 } /* Generic.Error */
@@ -626,49 +623,48 @@ div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
 .highlight .gt { color: #0040D0 } /* Generic.Traceback */
-.highlight .kc { color: #AA22FF; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #AA22FF; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #AA22FF; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
-.highlight .kr { color: #AA22FF; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #00BB00; font-weight: bold } /* Keyword.Type */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BB4444 } /* Literal.String */
-.highlight .na { color: #BB4444 } /* Name.Attribute */
-.highlight .nb { color: #AA22FF } /* Name.Builtin */
-.highlight .nc { color: #0000FF } /* Name.Class */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
 .highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
 .highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #00A000 } /* Name.Function */
+.highlight .nf { color: #0000FF } /* Name.Function */
 .highlight .nl { color: #A0A000 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #B8860B } /* Name.Variable */
+.highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sb { color: #BB4444 } /* Literal.String.Backtick */
-.highlight .sc { color: #BB4444 } /* Literal.String.Char */
-.highlight .sd { color: #BB4444; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BB4444 } /* Literal.String.Double */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BB4444 } /* Literal.String.Heredoc */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
 .highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
 .highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BB4444 } /* Literal.String.Single */
-.highlight .ss { color: #B8860B } /* Literal.String.Symbol */
-.highlight .bp { color: #AA22FF } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #B8860B } /* Name.Variable.Class */
-.highlight .vg { color: #B8860B } /* Name.Variable.Global */
-.highlight .vi { color: #B8860B } /* Name.Variable.Instance */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-
 
 @media screen {
   body {
@@ -921,7 +917,7 @@ asciidoc.install(2);
 <h1>Thrift: The Missing Guide</h1>
 <span id="author">Diwaker Gupta</span><br>
 <span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
-<span id="revdate">2013-07-09</span>
+<span id="revdate">2015-11-08</span>
 <br><span id="revremark">Written against Thrift 0.6.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
@@ -1007,6 +1003,11 @@ container types, exceptions and service definitions.</p></div>
 </li>
 <li>
 <p>
+<span class="monospaced">binary</span>: A byte array
+</p>
+</li>
+<li>
+<p>
 <span class="monospaced">string</span>: Encoding agnostic text or binary string
 </p>
 </li>
@@ -1037,7 +1038,7 @@ Java Generics style. There are three containers types available:</p></div>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Types used in containers many be any valid Thrift type (including structs and
+<div class="paragraph"><p>Types used in containers may be any valid Thrift type (including structs and
 exceptions) excluding services.</p></div>
 </div>
 <div class="sect3">
@@ -1210,7 +1211,7 @@ Use the fully qualified name of the constant when assigning default values.
 </table></div>
 <div class="paragraph"><p>Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
 structs, for that matter).</p></div>
-<div class="paragraph"><p>Enumerator constants MUST be in the range of <em>postive</em> 32-bit integers.</p></div>
+<div class="paragraph"><p>Enumerator constants MUST be in the range of <em>positive</em> 32-bit integers.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_comments">Comments</h3>
@@ -1351,7 +1352,7 @@ Semi-colon is (confusingly) optional; hex values are valid here.
 in a Thrift IDL. A struct is composed of <em>fields</em>; each field has a unique
 integer identifier, a type, a name and an optional default value.</p></div>
 <div class="paragraph"><p>Consider a simple example. Suppose you want to build a
-<a href="http://twitter.com">Twitter</a>-like service. Here is how may define a <span class="monospaced">Tweet</span>:</p></div>
+<a href="http://twitter.com">Twitter</a>-like service. Here is how you might define a <span class="monospaced">Tweet</span>:</p></div>
 <div class="listingblock">
 <div class="content"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
@@ -1702,204 +1703,27 @@ will hopefully help you understand how to use it effectively.</p></div>
 <div class="sect2">
 <h3 id="_concepts">Concepts</h3>
 <div class="paragraph"><p>Here is a pictorial view of the Thrift network stack:</p></div>
-<div class="imageblock ditaa">
-<div class="content">
-<img alt="thrift__1.png" src="data:image/png;base64,
-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
-gg==">
-</div>
-<div class="title">Figure 1. The Thrift Network Stack</div>
-</div>
+<div class="listingblock">
+<div class="title">The Thrift Network Stack</div>
+<div class="content monospaced">
+<pre>+-------------------------------------------+
+| cGRE                                      |
+| Server                                    |
+| (single-threaded, event-driven etc)       |
++-------------------------------------------+
+| cBLU                                      |
+| Processor                                 |
+| (compiler generated)                      |
++-------------------------------------------+
+| cGRE                                      |
+| Protocol                                  |
+| (JSON, compact etc)                       |
++-------------------------------------------+
+| cGRE                                      |
+| Transport                                 |
+| (raw TCP, HTTP etc)                       |
++-------------------------------------------+</pre>
+</div></div>
 <div class="sect3">
 <h4 id="_transport">Transport</h4>
 <div class="paragraph"><p>The Transport layer provides a simple abstraction for reading/writing from/to
@@ -2151,7 +1975,7 @@ concrete example, consider the generated C++ code for the <span class="monospace
 example above:</p></div>
 <div class="listingblock">
 <div class="content"><div class="highlight"><pre>  <span class="p">...</span>
-  <span class="n">int32_t</span> <span class="n">userId</span><span class="p">;</span>
+  <span class="kt">int32_t</span> <span class="n">userId</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">userName</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span><span class="p">;</span>
   <span class="n">Location</span> <span class="n">loc</span><span class="p">;</span>
@@ -2637,7 +2461,7 @@ Changing a default value is generally OK, as long as you remember that default
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-07-09 22:26:37 PDT
+Last updated 2015-11-08 18:14:04 PST
 </div>
 </div>
 </body>
