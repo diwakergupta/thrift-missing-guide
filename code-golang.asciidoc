@@ -1,0 +1,103 @@
+Generated Files
+^^^^^^^^^^^^^^^
+
+* The +constants.go+ file, which contains all constants.
+* The +ttypes.go+, which contains type definitions.
+
+-----------------------------------------------------------------------------
+$ tree gen-go
+`-- thrift
+    `-- example
+        |-- constants.go
+        `-- ttypes.go
+-----------------------------------------------------------------------------
+
+[TIP]
+.Naming with Go
+=============================================================================
+The Go language uses capitalization to determine export rules. The Go thrift
+library adapts thrift names to adhere to this convention. So a struct
+field called +userName+ will be accessible in Go as +UserName+. As a rule, the
+first letter of any constant or struct field will be capitalized.
+=============================================================================
+
+Types
+^^^^^
+
+Thrift maps the various base and container types to Go types as follows:
+
+* +bool+: +bool+
+* +binary+: +[]byte+
+* +byte+: +byte+
+* +i16+: +int16+
+* +i32+: +int32+
+* +i64+: +int64+
+* +double+: +float64+
+* +string+: +string+
+* +list<t1>+: +[]t1+
+* +set<t1>+: +map[t1]bool+ where +bool+ is always +true+
+* +map<t1,t2>+: +map[t1]t2+
+
+With the exception of +set+, which has no direct Go equivalent, all of the
+types are straightforward.
+
+The Thrift developers decided that the best way to represent Thrift +set+ types
+in Go was to implement them as +map[t1]bool+.
+
+Typedefs
+^^^^^^^^
+
+Thrift typedefs are implemented in Go as Go types. Thus +typedef i32 MyInt+
+becomes the Go +type MyInt int32+.
+
+Enums
+^^^^^
+
+The Go Thrift compiler translates enums to constants. The strategy it employs
+is to create a set of constants where the +enum+ name is the prefix and the
++enum+ item's name is the suffix. The two are separated by an underscore (+_+).
+
+The +TweetType+ of +TWEET+ becomes, in Go, +TweetType_TWEET+.
+
+Constants
+^^^^^^^^^
+
+Thrift constants are declared +const+ for Go types that can be declared as
+constants (e.g. +int+, +string+, etc.). For types that cannot be declared 
++const+ (like maps and slices), the Go library declares these as global +var+.
+
+Structs
+^^^^^^^
+
+The Thrift +struct+ is translated to Go +struct+ differently than in other
+language libraries.
+
+Unlike most Thrift implementations, the type declarations are substantially
+impacted by whether or not a thrift attribute is declared +required+ or
++optional+. To distinguish between an empty value and a +nil+ value, the
+Go library uses pointers for all +optional+ values.
+
+For example, here is an abbreviated listing of the +Tweet+ struct discussed
+above:
+
+[source,thrift]
+--------------------------------------------------------------------------------
+struct Tweet {
+  1: required i32 userId
+  // ...
+  4: optional Location loc
+  // ...
+}
+--------------------------------------------------------------------------------
+
+In Go, the field +userId+ will be +UserId int32+, while +loc+ will be
++Loc *Location+. The salient detail is that any field tagged as +optional+
+will be implemented as a Go pointer to a value, while +required+ types are
+implemented as values.
+
+Unions
+^^^^^^
+
+Thrift +union+ types are translated into Go structs, where only one field on
+the struct may be set to a non-nil value.
+
